@@ -85,7 +85,7 @@
                                 <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">언플러그드 모드: 로봇 움직임 직접 제어하기</h2>
                                 <p class="text-[32px] leading-relaxed text-slate-600 mb-6">코딩 없이 손으로 직접 로봇의 동작을 기록하고 재생하는 기능입니다.</p>
                             </div>
-                            <div class="text-2xl leading-relaxed space-y-4 grid sm:grid-cols-2 gap-8">
+                            <div class="text-2xl leading-relaxed space-y-6">
                                 <div>
                                     <h3 class="font-bold text-teal-600">🕹️ 조작 방법</h3>
                                     <ul class="list-disc list-inside ml-2">
@@ -168,14 +168,14 @@
                     { type: '개인', number: 7, difficulty: '보통-어려움', title: '특정 위치에 그리퍼 정렬', missionContent: '그리퍼를 3cm x 3cm 사각형 중앙에 정확히 정렬하고 3초간 유지합니다.', howToPerform: ['언플러그드 모드 진입', '그리퍼 중심을 사각형 중앙에 맞추기', '그리퍼 닫는 동작 기록', '사용자가 직접 3초간 기다리기'], specialNote: '정확한 시간 제어(wait)는 코딩 미션에서 배울 수 있습니다.' },
                     { type: '개인', number: 8, difficulty: '어려움', title: '3개 이상의 원기둥 쌓기', missionContent: 'A 지점의 원기둥 3개 이상을 B 지점에 차례로 옮겨 쌓습니다.', howToPerform: ['미션 6의 방법으로 2개 쌓기', '세 번째 원기둥을 집어 2층 위에 쌓기', '과정을 반복하여 3층 이상 쌓기', '재생하여 확인'] },
                     { type: '개인', number: 9, difficulty: '어려움', title: '그리퍼 수직 유지 모드 활용 (상상)', missionContent: '그리퍼가 항상 수직을 유지하는 것처럼 원기둥을 옮깁니다.', howToPerform: ['언플러그드 모드 진입', '이동하는 동안 4번 관절을 수동 조절', '그리퍼가 바닥과 수직이 되도록 노력하며 기록', '재생하여 수직 유지 정도 확인'], specialNote: '자동 수직 유지 기능은 코딩을 통해 더 쉽게 구현할 수 있습니다.' },
-                    { type: '개인', number: 10, difficulty: '어려움', title: '복합 동작 시퀀스 기록 (집고, 옮기고, 놓고, 다시 돌아오기)', missionContent: 'A에서 원기둥을 집어 B에 놓고, 지정된 대기 위치로 돌아옵니다.', howToPerform: ['A에서 원기둥 잡기', 'B에 원기둥 놓기', '초기 위치가 아닌 지정된 대기 위치로 이동 기록', '재생하여 전체 시퀀스 확인'] },
+                    { type: '개인', number: 10, difficulty: '어려움', title: '복합 동작 시퀀스 기록', missionContent: 'A에서 원기둥을 집어 B에 놓고, 지정된 대기 위치로 돌아옵니다.', howToPerform: ['A에서 원기둥 잡기', 'B에 원기둥 놓기', '초기 위치가 아닌 지정된 대기 위치로 이동 기록', '재생하여 전체 시퀀스 확인'] },
                     // 팀 미션 10개
                     { type: '팀', number: 1, difficulty: '쉬움', title: '환영 동작 제스처 만들기', missionContent: '팀원과 협력하여 로봇 팔이 사람을 환영하는 듯한 제스처를 만듭니다.', howToPerform: ['팀원과 동작 계획', '한 명은 팔을 움직이고 다른 한 명은 버튼 누르기', '재생하며 함께 평가 및 수정'] },
                     { type: '팀', number: 2, difficulty: '쉬움-보통', title: '로봇 악수 시뮬레이션', missionContent: '로봇 팔이 사람의 손과 악수하는 것처럼 동작하도록 기록합니다.', howToPerform: ['팀원과 악수 위치로 이동 및 기록', '그리퍼를 여닫아 잡고 놓는 동작 기록', '자연스럽게 원래 위치로 복귀', '재생하여 확인'] },
                     { type: '팀', number: 3, difficulty: '보통', title: '릴레이 원기둥 옮기기', missionContent: '두 개의 원기둥을 각기 다른 팀원이 릴레이 형식으로 옮깁니다.', howToPerform: ['첫 팀원이 첫 원기둥 옮기기 기록', '두 번째 팀원이 두 번째 원기둥 옮기기 이어서 기록', '재생하여 순서대로 옮겨지는지 확인'] },
                     { type: '팀', number: 4, difficulty: '보통', title: '다과 준비 시뮬레이션', missionContent: '트레이 위 다과 중 하나를 집어 다른 접시로 옮깁니다.', howToPerform: ['팀원과 옮길 다과와 경로 계획', '계획에 따라 집고, 이동하고, 놓는 동작 기록', '정확한 그리퍼 타이밍 연습', '재생하여 확인'] },
                     { type: '팀', number: 5, difficulty: '보통-어려움', title: '원기둥 피라미드 만들기 (3개)', missionContent: '3개의 원기둥으로 안정적인 피라미드 형태(바닥 2, 위 1)를 쌓습니다.', howToPerform: ['팀원과 쌓을 위치와 순서 계획', '바닥에 원기둥 2개 놓기 기록', '나머지 1개를 그 위에 쌓기 기록', '재생하여 안정성 확인'] },
-                    { type: '팀', number: 6, difficulty: '보통-어려움', title: '로봇 안전 구역 설정 및 이동', missionContent: '위험 구역을 침범하지 않으면서 안전 구역 내에서 물체를 옮깁니다.', howToPerform: ['팀원과 위험 구역 인지 및 경로 계획', '위험 구역을 우회하여 이동하는 동작 기록', '관절 회전 범위를 고려하여 기록', '재생하여 침범 여부 평가'] },
+                    { type: '팀', number: 6, difficulty: '보통-어려움', 'title': '로봇 안전 구역 설정 및 이동', 'missionContent': '위험 구역을 침범하지 않으면서 안전 구역 내에서 물체를 옮깁니다.', 'howToPerform': ['팀원과 위험 구역 인지 및 경로 계획', '위험 구역을 우회하여 이동하는 동작 기록', '관절 회전 범위를 고려하여 기록', '재생하여 침범 여부 평가'] },
                     { type: '팀', number: 7, difficulty: '어려움', title: '정리 미션 (여러 물체 분류)', missionContent: '3가지 종류의 물체를 각 종류별로 지정된 3개의 다른 구역으로 분류합니다.', howToPerform: ['팀원과 분류 구역 및 순서 계획', '종류별로 집어서 해당 구역으로 옮기는 과정 반복 기록', '효율적인 동선으로 기록', '재생하여 분류 정확도 확인'] },
                     { type: '팀', number: 8, difficulty: '어려움', title: '복잡한 경로 따라가기 및 물체 운반', missionContent: "'S'자나 'ㄱ'자 등 복잡하게 꺾인 경로를 따라가며 물체를 운반합니다.", howToPerform: ['팀원과 세밀한 관절 움직임 논의', '경로의 각 지점에서 위치/방향 정교하게 기록', '물체가 떨어지지 않도록 주의', '재생하여 경로 추적 정확도 평가'] },
                     { type: '팀', number: 9, difficulty: '어려움', title: '퍼즐 조각 놓기 (정사각형 블록)', missionContent: '정사각형 블록을 집어, 다른 지정된 빈 공간(홈)에 정확히 끼워 넣습니다.', howToPerform: ['팀원과 끼워넣을 각도 및 높이 논의', '블록을 집는 동작 기록', '4번 관절을 조절하며 홈에 정확히 내려놓기', '재생하여 정확도 확인 및 수정'] },
