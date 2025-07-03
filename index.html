@@ -40,7 +40,7 @@
                         <div class="absolute hidden group-hover:block right-0 mt-1 bg-white shadow-lg rounded-lg w-96 max-h-96 overflow-y-auto z-50">
                             <div class="grid grid-cols-2 gap-1 p-2">
                                 <template x-for="(activity, index) in activities" :key="index">
-                                    <a href="#" @click.prevent="currentSlide = index + 1" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded" x-html="`${index + 1}. ${activity.title}`"></a>
+                                    <a href="#" @click.prevent="currentSlide = index + 1" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded" x-text="`${index + 1}. ${activity.title}`"></a>
                                 </template>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                  <a href="#" @click.prevent="currentSlide = 0; navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">📖 사용 방법</a>
                  <h3 class="px-3 pt-4 pb-2 text-sm font-bold text-slate-500">활동 예시</h3>
                  <template x-for="(activity, index) in activities" :key="index">
-                     <a href="#" @click.prevent="currentSlide = index + 1; navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md" x-html="`${index + 1}. ${activity.title}`"></a>
+                     <a href="#" @click.prevent="currentSlide = index + 1; navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md" x-text="`${index + 1}. ${activity.title}`"></a>
                  </template>
             </div>
         </nav>
@@ -94,7 +94,7 @@
 
                 <template x-for="(slide, index) in activities" :key="index">
                     <div x-show="currentSlide === (index + 1)" x-transition.opacity.duration.300ms class="space-y-4">
-                        <h2 class="text-2xl sm:text-3xl font-bold text-slate-800" x-html="slide.title"></h2>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-slate-800" x-text="slide.title"></h2>
                         <p><strong class="text-lg text-teal-700">활동 내용:</strong> <span x-text="slide.content"></span></p>
                         <div class="p-3 text-center bg-sky-100 border-l-4 border-sky-300 text-sm text-slate-600 italic rounded-r-lg" x-text="slide.imagePlaceholder"></div>
                         <div class="bg-teal-50 border border-teal-200 rounded-lg p-4">
@@ -107,7 +107,6 @@
                         </div>
                     </div>
                 </template>
-
             </div>
 
             <div class="mt-6 flex items-center justify-center space-x-4 sm:space-x-6">
@@ -115,9 +114,9 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
                 </button>
                 
-                <div class="font-bold text-slate-600 text-lg">
-                    <span x-text="currentSlide === 0 ? '사용 방법' : `활동 ${currentSlide}`"></span>
-                    <span class="font-normal text-slate-500" x-text="`/ ${activities.length}`"></span>
+                <div class="font-bold text-slate-600 text-lg tabular-nums">
+                    <span x-text="currentSlide + 1"></span>
+                    <span class="font-normal text-slate-500" x-text="`/ ${activities.length + 1}`"></span>
                 </div>
 
                 <button @click="currentSlide = Math.min(activities.length, currentSlide + 1)" :disabled="currentSlide === activities.length" class="p-3 rounded-full bg-white shadow-md hover:bg-sky-100 disabled:opacity-50 disabled:cursor-not-allowed transition">
@@ -137,6 +136,7 @@
             return {
                 navOpen: false,
                 currentSlide: 0,
+                // 활동 데이터: 20개의 활동을 배열로 관리
                 activities: [
                     { title: '📦 원기둥 옮기기', content: '로봇 팔을 손으로 움직여 원기둥을 잡고 (그리퍼 닫힘) A 지점에서 B 지점으로 옮긴 후 놓는 (그리퍼 열림) 과정을 기록하고 재생합니다.', imagePlaceholder: '[여기에 원기둥을 옮기는 로봇 팔 이미지를 넣으면 학습 효과가 좋습니다]', features: ['<strong>위치 기록</strong> (티칭 버튼 한 번 사용)', '<strong>그리퍼 제어</strong> (티칭 버튼 두 번 사용)'] },
                     { title: '🧱 원기둥 쌓기', content: '첫 번째 원기둥을 A에서 B로 옮긴 후, 다시 원기둥 하나를 A에 놓고 두 번째 원기둥을 가져와 첫 번째 원기둥 위에 쌓는 복합적인 운반 및 정렬 활동입니다.', imagePlaceholder: '[여기에 원기둥 두 개를 차곡차곡 쌓는 이미지를 넣으면 좋습니다]', features: ['연속된 위치 기록', '그리퍼 제어'] },
