@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🤖 라쿤 로봇 언플러그드 완전 정복</title>
+    <title>🤖 라쿤 로봇 언플러그드 활동 슬라이드</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -17,64 +17,50 @@
             background-color: #f0f9ff; /* sky-50 */
             color: #1e293b; /* 군청색 계열: slate-800 */
         }
-        /* 아코디언(details) 열릴 때 부드러운 전환 효과 */
-        details[open] summary ~ * {
-            animation: sweep .5s ease-in-out;
-        }
-        @keyframes sweep {
-            0%    {opacity: 0; transform: translateY(-10px)}
-            100%  {opacity: 1; transform: translateY(0)}
-        }
-        /* 스크롤바 디자인 (선택사항) */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background-color: #14b8a6; /* teal-500 */
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background-color: #ccfbf1; /* teal-100 */
-        }
+        /* 스크롤바 디자인 (네비게이션 메뉴용) */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background-color: #14b8a6; border-radius: 10px; }
+        ::-webkit-scrollbar-track { background-color: #ccfbf1; }
     </style>
 </head>
 <body class="bg-sky-50">
 
-    <div x-data="{ navOpen: false }">
+    <div x-data="{ navOpen: false, currentSlide: 0, totalSlides: 21 }">
+        
         <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg shadow-md">
             <div class="container mx-auto px-4">
                 <div class="flex items-center justify-between h-16">
                     <div class="flex items-center space-x-3">
                         <span class="text-2xl">🤖</span>
-                        <a href="#top" class="text-xl font-bold text-slate-800">라쿤 로봇 언플러그드</a>
+                        <a href="#" @click.prevent="currentSlide = 0" class="text-xl font-bold text-slate-800">라쿤 로봇 언플러그드</a>
                     </div>
                     
                     <nav class="hidden md:flex items-center space-x-2">
-                        <a href="#how-to-use" class="px-3 py-2 text-slate-700 font-semibold hover:text-teal-600 transition-colors">📖 사용 방법</a>
+                        <a href="#" @click.prevent="currentSlide = 0" class="px-3 py-2 text-slate-700 font-semibold hover:text-teal-600 transition-colors">📖 사용 방법</a>
                         <div class="relative group">
                             <button class="px-3 py-2 text-slate-700 font-semibold hover:text-teal-600 transition-colors">활동 예시 🔽</button>
-                            <div class="absolute hidden group-hover:block right-0 mt-1 bg-white shadow-lg rounded-lg w-96 max-h-96 overflow-y-auto">
+                            <div class="absolute hidden group-hover:block right-0 mt-1 bg-white shadow-lg rounded-lg w-96 max-h-96 overflow-y-auto z-50">
                                 <div class="grid grid-cols-2 gap-1 p-2">
-                                    <a href="#activity-1" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">📦 1. 원기둥 옮기기</a>
-                                    <a href="#activity-2" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">🧱 2. 원기둥 쌓기</a>
-                                    <a href="#activity-3" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">🔢 3. 순서대로 옮기기</a>
-                                    <a href="#activity-4" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">🎨 4. 물체 분류하기</a>
-                                    <a href="#activity-5" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">✍️ 5. 도형 그리기</a>
-                                    <a href="#activity-6" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">🔄 6. 제자리 반복</a>
-                                    <a href="#activity-7" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">🚧 7. 장애물 피하기</a>
-                                    <a href="#activity-8" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">👋 8. 인사하기</a>
-                                    <a href="#activity-9" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">📥 9. 용기에 담기</a>
-                                    <a href="#activity-10" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">↩️ 10. 초기 위치 복귀</a>
-                                    <a href="#activity-11" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">⬆️ 11. 높이 조절</a>
-                                    <a href="#activity-12" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">🎯 12. 목표 지점 터치</a>
-                                    <a href="#activity-13" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">〰️ 13. 지그재그 이동</a>
-                                    <a href="#activity-14" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">📄 14. 얇은 물체 집기</a>
-                                    <a href="#activity-15" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">👏 15. 손뼉 치기</a>
-                                    <a href="#activity-16" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">📈 16. 바닥->테이블</a>
-                                    <a href="#activity-17" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">🧩 17. 간단 조립</a>
-                                    <a href="#activity-18" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">🔄 18. 들고 회전하기</a>
-                                    <a href="#activity-19" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">🧘 19. 대기 포즈</a>
-                                    <a href="#activity-20" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">📏 20. 점선 따라가기</a>
+                                    <a href="#" @click.prevent="currentSlide = 1" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">📦 1. 원기둥 옮기기</a>
+                                    <a href="#" @click.prevent="currentSlide = 2" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">🧱 2. 원기둥 쌓기</a>
+                                    <a href="#" @click.prevent="currentSlide = 3" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">🔢 3. 순서대로 옮기기</a>
+                                    <a href="#" @click.prevent="currentSlide = 4" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">🎨 4. 물체 분류하기</a>
+                                    <a href="#" @click.prevent="currentSlide = 5" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">✍️ 5. 도형 그리기</a>
+                                    <a href="#" @click.prevent="currentSlide = 6" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">🔄 6. 제자리 반복</a>
+                                    <a href="#" @click.prevent="currentSlide = 7" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">🚧 7. 장애물 피하기</a>
+                                    <a href="#" @click.prevent="currentSlide = 8" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">👋 8. 인사하기</a>
+                                    <a href="#" @click.prevent="currentSlide = 9" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">📥 9. 용기에 담기</a>
+                                    <a href="#" @click.prevent="currentSlide = 10" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">↩️ 10. 초기 위치 복귀</a>
+                                    <a href="#" @click.prevent="currentSlide = 11" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">⬆️ 11. 높이 조절</a>
+                                    <a href="#" @click.prevent="currentSlide = 12" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">🎯 12. 목표 지점 터치</a>
+                                    <a href="#" @click.prevent="currentSlide = 13" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">〰️ 13. 지그재그 이동</a>
+                                    <a href="#" @click.prevent="currentSlide = 14" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">📄 14. 얇은 물체 집기</a>
+                                    <a href="#" @click.prevent="currentSlide = 15" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">👏 15. 손뼉 치기</a>
+                                    <a href="#" @click.prevent="currentSlide = 16" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">📈 16. 바닥-&gt;테이블</a>
+                                    <a href="#" @click.prevent="currentSlide = 17" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">🧩 17. 간단 조립</a>
+                                    <a href="#" @click.prevent="currentSlide = 18" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">🔄 18. 들고 회전하기</a>
+                                    <a href="#" @click.prevent="currentSlide = 19" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">🧘 19. 대기 포즈</a>
+                                    <a href="#" @click.prevent="currentSlide = 20" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded">📏 20. 점선 따라가기</a>
                                 </div>
                             </div>
                         </div>
@@ -92,145 +78,119 @@
             </div>
             
             <nav x-show="navOpen" @click.away="navOpen = false" class="md:hidden bg-white border-t border-gray-200" x-transition>
-                <div class="px-2 pt-2 pb-3 space-y-1 max-h-80 overflow-y-auto">
-                     <a href="#how-to-use" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">📖 사용 방법</a>
+                 <div class="px-2 pt-2 pb-3 space-y-1 max-h-80 overflow-y-auto">
+                     <a href="#" @click.prevent="currentSlide = 0; navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">📖 사용 방법</a>
                      <h3 class="px-3 pt-4 pb-2 text-sm font-bold text-slate-500">활동 예시</h3>
-                     <a href="#activity-1" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">📦 1. 원기둥 옮기기</a>
-                     <a href="#activity-2" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">🧱 2. 원기둥 쌓기</a>
-                     <a href="#activity-3" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">🔢 3. 순서대로 옮기기</a>
-                     <a href="#activity-4" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">🎨 4. 물체 분류하기</a>
-                     <a href="#activity-5" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">✍️ 5. 도형 그리기</a>
-                     <a href="#activity-6" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">🔄 6. 제자리 반복</a>
-                     <a href="#activity-7" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">🚧 7. 장애물 피하기</a>
-                     <a href="#activity-8" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">👋 8. 인사하기</a>
-                     <a href="#activity-9" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">📥 9. 용기에 담기</a>
-                     <a href="#activity-10" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">↩️ 10. 초기 위치 복귀</a>
-                     <a href="#activity-11" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">⬆️ 11. 높이 조절</a>
-                     <a href="#activity-12" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">🎯 12. 목표 지점 터치</a>
-                     <a href="#activity-13" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">〰️ 13. 지그재그 이동</a>
-                     <a href="#activity-14" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">📄 14. 얇은 물체 집기</a>
-                     <a href="#activity-15" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">👏 15. 손뼉 치기</a>
-                     <a href="#activity-16" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">📈 16. 바닥->테이블</a>
-                     <a href="#activity-17" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">🧩 17. 간단 조립</a>
-                     <a href="#activity-18" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">🔄 18. 들고 회전하기</a>
-                     <a href="#activity-19" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">🧘 19. 대기 포즈</a>
-                     <a href="#activity-20" @click="navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">📏 20. 점선 따라가기</a>
+                     <template x-for="i in 20">
+                         <a href="#" @click.prevent="currentSlide = i; navOpen=false" x-text="`${i}. 활동 예시`" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md" :data-activity-index="i"></a>
+                     </template>
                 </div>
             </nav>
         </header>
 
-        <main id="top" class="container mx-auto px-4 py-8 md:py-12">
-            
-            <section class="text-center mb-16">
-                <h1 class="text-4xl md:text-5xl font-extrabold text-slate-800 mb-4">라쿤 로봇 언플러그드 완전 정복</h1>
-                <p class="max-w-3xl mx-auto text-lg text-slate-600">
-                    컴퓨터 없이 로봇 팔을 손으로 직접 움직여 동작을 가르쳐요! '언플러그드 모드'는 위치와 그리퍼(집게) 상태를 기록하고, 버튼 하나로 로봇이 그대로 따라하게 만드는 라쿤 로봇의 핵심 기능입니다.
-                </p>
-            </section>
-
-            <section id="how-to-use" class="max-w-4xl mx-auto mb-16 bg-white p-6 sm:p-8 rounded-xl shadow-lg">
-                <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center"><span class="mr-3 text-3xl">📖</span>언플러그드 모드 사용 방법</h2>
-                <ol class="space-y-4 text-slate-700">
-                    <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">1.</span> <div><strong class="text-slate-800">전원 켜기:</strong> 전원 버튼을 한 번 눌러 로봇의 전원을 켭니다.</div></li>
-                    <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">2.</span> <div><strong class="text-slate-800">모드 진입:</strong> 전원이 켜진 상태에서 티칭 버튼을 한 번 누르면 언플러그드 모드로 진입합니다.</div></li>
-                    <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">3.</span> <div><strong class="text-slate-800">위치 설정:</strong> 로봇 팔을 손으로 직접 움직여 원하는 위치로 이동시킵니다. 로봇 몸체를 한 손으로 잡고 움직이면 안정적입니다.</div></li>
+        <main class="py-8 sm:py-12">
+            <div class="relative max-w-4xl mx-auto px-4">
+                
+                <div class="bg-white rounded-xl shadow-2xl p-6 sm:p-8 md:p-10 min-h-[550px] sm:min-h-[600px] flex flex-col justify-center relative overflow-hidden">
                     
-                    <div class="my-4 ml-8 bg-orange-100 border-l-4 border-orange-400 text-orange-800 p-4 rounded-r-lg">
-                        <p class="font-bold flex items-center"><span class="text-xl mr-2">⚠️</span>주의하세요!</p>
-                        <p>로봇 팔을 너무 세게 움직이면 고장의 원인이 될 수 있습니다. 부드럽게 다뤄주세요.</p>
+                    <div x-show="currentSlide === 0" x-transition.opacity.duration.300ms>
+                        <section>
+                            <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center"><span class="mr-3 text-3xl">📖</span>언플러그드 모드 사용 방법</h2>
+                            <ol class="space-y-3 text-slate-700 text-sm sm:text-base">
+                                <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">1.</span> <div><strong class="text-slate-800">전원 켜기:</strong> 전원 버튼을 한 번 눌러 로봇의 전원을 켭니다.</div></li>
+                                <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">2.</span> <div><strong class="text-slate-800">모드 진입:</strong> 티칭 버튼을 한 번 누르면 언플러그드 모드로 진입합니다.</div></li>
+                                <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">3.</span> <div><strong class="text-slate-800">위치 설정:</strong> 로봇 팔을 손으로 직접 움직여 원하는 위치로 이동시킵니다.</div></li>
+                                <div class="my-3 ml-8 bg-orange-100 border-l-4 border-orange-400 text-orange-800 p-3 rounded-r-lg">
+                                    <p class="font-bold flex items-center"><span class="text-xl mr-2">⚠️</span>주의! 너무 세게 움직이면 고장날 수 있어요.</p>
+                                </div>
+                                <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">4.</span> <div><strong class="text-slate-800">위치 기록:</strong> 티칭 버튼을 <strong class="text-teal-600">한 번</strong> 누르면 현재 위치가 기록됩니다.</div></li>
+                                <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">5.</span> <div><strong class="text-slate-800">그리퍼 기록:</strong> 티칭 버튼을 <strong class="text-teal-600">두 번</strong> 누르면 그리퍼 상태가 바뀝니다. (열림 ↔ 닫힘)</div></li>
+                                <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">6.</span> <div><strong class="text-slate-800">동작 재생:</strong> 재생 버튼을 누르면 기록된 동작을 순서대로 재생합니다.</div></li>
+                                <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">7.</span> <div><strong class="text-slate-800">기록 삭제:</strong> 삭제 버튼을 <strong class="text-teal-600">한 번</strong> 누르면 마지막 동작이, <strong class="text-teal-600">길게</strong> 누르면 모든 동작이 삭제됩니다.</div></li>
+                            </ol>
+                        </section>
                     </div>
 
-                    <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">4.</span> <div><strong class="text-slate-800">위치 기록:</strong> 원하는 위치에서 티칭 버튼을 <strong class="text-teal-600">한 번</strong> 누르면 현재 위치가 기록됩니다.</div></li>
-                    <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">5.</span> <div><strong class="text-slate-800">그리퍼 기록:</strong> 그리퍼 상태를 바꾸며 기록하려면 티칭 버튼을 <strong class="text-teal-600">두 번</strong> 누릅니다. (열림 ↔ 닫힘)</div></li>
-                    <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">6.</span> <div><strong class="text-slate-800">동작 반복:</strong> 3~5번 과정을 반복하여 여러 동작을 순서대로 추가 기록할 수 있습니다.</div></li>
-                    <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">7.</span> <div><strong class="text-slate-800">동작 재생:</strong> 재생 버튼을 누르면 기록된 동작을 처음부터 순서대로 재생합니다.</div></li>
-                    <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">8.</span> <div><strong class="text-slate-800">기록 삭제:</strong> 삭제 버튼을 <strong class="text-teal-600">한 번</strong> 누르면 마지막 동작이, <strong class="text-teal-600">길게</strong> 누르면 모든 동작이 삭제됩니다.</div></li>
-                    <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">9.</span> <div><strong class="text-slate-800">초기 위치 복귀:</strong> 전원 버튼을 한 번 누르면 로봇이 초기 위치로 돌아갑니다.</div></li>
-                </ol>
-            </section>
-
-
-            <div class="space-y-4 max-w-4xl mx-auto">
-                <h2 class="text-3xl font-bold text-slate-800 mb-6 text-center">🚀 언플러그드 활동 예시 20</h2>
-                
-                <details id="activity-1" class="bg-white p-4 rounded-lg shadow-sm transition-all duration-300 open:ring-2 open:ring-teal-300">
-                    <summary class="text-xl font-bold text-slate-800 cursor-pointer hover:text-teal-600 list-none flex items-center justify-between">
-                        <h2>📦 활동 1: 원기둥 하나를 A에서 B로 옮기기</h2>
-                        <span class="text-teal-500 transform transition-transform duration-300 details-arrow">▼</span>
-                    </summary>
-                    <div class="mt-4 pt-4 border-t border-gray-200 text-slate-700 space-y-4">
-                        <p><strong class="text-lg text-teal-700">활동 내용:</strong> 로봇 팔을 손으로 움직여 원기둥을 잡고 (그리퍼 닫힘) A 지점에서 B 지점으로 옮긴 후 놓는 (그리퍼 열림) 과정을 기록하고 재생합니다.</p>
-                        <div class="p-3 text-center bg-sky-100 border-l-4 border-sky-300 text-sm text-slate-600 italic rounded-r-lg">
-                            [여기에 로봇 팔이 원기둥을 A에서 B로 옮기는 이미지를 넣으면 학습 효과가 좋습니다]
+                    <template x-for="slide in activitySlides">
+                        <div x-show="currentSlide === slide.id" x-transition.opacity.duration.300ms class="space-y-4">
+                            <h2 class="text-2xl sm:text-3xl font-bold text-slate-800" x-html="slide.title"></h2>
+                            <p><strong class="text-lg text-teal-700">활동 내용:</strong> <span x-text="slide.content"></span></p>
+                            <div class="p-3 text-center bg-sky-100 border-l-4 border-sky-300 text-sm text-slate-600 italic rounded-r-lg" x-text="slide.imagePlaceholder"></div>
+                            <div class="bg-teal-50 border border-teal-200 rounded-lg p-4">
+                                <h3 class="font-bold text-teal-800 mb-2 flex items-center"><span class="mr-2 text-xl">💡</span>핵심 기능</h3>
+                                <ul class="space-y-1 list-inside">
+                                    <template x-for="feature in slide.features">
+                                        <li class="flex items-start"><span class="mr-2 text-teal-500">✅</span><span x-html="feature"></span></li>
+                                    </template>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="bg-teal-50 border border-teal-200 rounded-lg p-4">
-                            <h3 class="font-bold text-teal-800 mb-2 flex items-center"><span class="mr-2 text-xl">💡</span>핵심 기능</h3>
-                            <ul class="space-y-1 list-inside">
-                                <li class="flex items-start"><span class="mr-2 text-teal-500">✅</span> <span><strong>위치 기록:</strong> 티칭 버튼 한 번 클릭</span></li>
-                                <li class="flex items-start"><span class="mr-2 text-teal-500">✅</span> <span><strong>그리퍼 제어:</strong> 티칭 버튼 두 번 클릭</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </details>
-                
-                <details id="activity-2" class="bg-white p-4 rounded-lg shadow-sm transition-all duration-300 open:ring-2 open:ring-teal-300">
-                    <summary class="text-xl font-bold text-slate-800 cursor-pointer hover:text-teal-600 list-none flex items-center justify-between">
-                        <h2>🧱 활동 2: 두 개의 원기둥을 쌓기</h2>
-                        <span class="text-teal-500 transform transition-transform duration-300 details-arrow">▼</span>
-                    </summary>
-                    <div class="mt-4 pt-4 border-t border-gray-200 text-slate-700 space-y-4">
-                        <p><strong class="text-lg text-teal-700">활동 내용:</strong> 첫 번째 원기둥을 A에서 B로 옮긴 후, 다시 원기둥 하나를 A에 놓고 두 번째 원기둥을 가져와 첫 번째 원기둥 위에 쌓는 복합적인 운반 및 정렬 활동입니다.</p>
-                        <div class="p-3 text-center bg-sky-100 border-l-4 border-sky-300 text-sm text-slate-600 italic rounded-r-lg">
-                           [여기에 로봇 팔이 원기둥 두 개를 차곡차곡 쌓는 이미지를 넣으면 학습 효과가 좋습니다]
-                        </div>
-                        <div class="bg-teal-50 border border-teal-200 rounded-lg p-4">
-                            <h3 class="font-bold text-teal-800 mb-2 flex items-center"><span class="mr-2 text-xl">💡</span>핵심 기능</h3>
-                            <ul class="space-y-1 list-inside">
-                                <li class="flex items-start"><span class="mr-2 text-teal-500">✅</span> <span><strong>연속된 위치 기록:</strong> 여러 단계를 순서대로 기록하는 능력</span></li>
-                                <li class="flex items-start"><span class="mr-2 text-teal-500">✅</span> <span><strong>그리퍼 제어</strong></span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </details>
-
-                <details id="activity-17" class="bg-white p-4 rounded-lg shadow-sm transition-all duration-300 open:ring-2 open:ring-teal-300">
-                    <summary class="text-xl font-bold text-slate-800 cursor-pointer hover:text-teal-600 list-none flex items-center justify-between">
-                        <h2>🧩 활동 17: 간단한 조립 동작 시뮬레이션</h2>
-                        <span class="text-teal-500 transform transition-transform duration-300 details-arrow">▼</span>
-                    </summary>
-                    <div class="mt-4 pt-4 border-t border-gray-200 text-slate-700 space-y-4">
-                        <p><strong class="text-lg text-teal-700">활동 내용:</strong> 두 개의 블록 중 하나를 잡고(그리퍼 닫힘) 다른 블록 위에 정확하게 끼워 넣는 듯한 조립 동작을 시뮬레이션하여 기록합니다.</p>
-                         <div class="p-3 text-center bg-sky-100 border-l-4 border-sky-300 text-sm text-slate-600 italic rounded-r-lg">
-                           [여기에 로봇 팔이 레고 블록 두 개를 조립하는 이미지를 넣으면 학습 효과가 좋습니다]
-                        </div>
-                        <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                             <h3 class="font-bold text-orange-800 mb-2 flex items-center"><span class="mr-2 text-xl">🔑</span>핵심 기능</h3>
-                            <ul class="space-y-1 list-inside">
-                                <li class="flex items-start"><span class="mr-2 text-orange-500">✅</span> <strong>정교한 위치 및 방향 제어</strong></li>
-                                <li class="flex items-start"><span class="mr-2 text-orange-500">✅</span> <strong>그리퍼 사용</strong></li>
-                            </ul>
-                        </div>
-                    </div>
-                </details>
+                    </template>
 
                 </div>
 
+                <div class="mt-6 flex items-center justify-center space-x-4 sm:space-x-6">
+                    <button @click="currentSlide = Math.max(0, currentSlide - 1)" :disabled="currentSlide === 0" class="p-3 rounded-full bg-white shadow-md hover:bg-sky-100 disabled:opacity-50 disabled:cursor-not-allowed transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                    </button>
+                    
+                    <div class="font-bold text-slate-600 text-lg">
+                        <span x-text="currentSlide === 0 ? '사용 방법' : `활동 ${currentSlide}`"></span>
+                        <span class="font-normal text-slate-500" x-text="`/ ${totalSlides - 1}`"></span>
+                    </div>
+
+                    <button @click="currentSlide = Math.min(totalSlides - 1, currentSlide + 1)" :disabled="currentSlide === totalSlides - 1" class="p-3 rounded-full bg-white shadow-md hover:bg-sky-100 disabled:opacity-50 disabled:cursor-not-allowed transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                    </button>
+                </div>
+            </div>
         </main>
         
-        <footer class="text-center py-6 mt-12 bg-white/50">
+        <footer class="text-center py-6 mt-8">
             <p class="text-slate-500">Created by 교육 콘텐츠 시각화 전문가 for Raccoon Robot Education</p>
         </footer>
     </div>
     
     <script>
-        // 아코디언 화살표 회전 스타일링을 위한 스크립트
-        document.querySelectorAll('details').forEach((detail) => {
-            detail.addEventListener('toggle', (event) => {
-                const arrow = detail.querySelector('.details-arrow');
-                if (detail.open) {
-                    arrow.style.transform = 'rotate(180deg)';
-                } else {
-                    arrow.style.transform = 'rotate(0deg)';
+        // Alpine.js 데이터 초기화
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('activitySlides', () => ({
+                // 활동 데이터 (JavaScript 객체 배열)
+                activitySlides: [
+                    { id: 1, title: '📦 활동 1: 원기둥 하나를 A에서 B로 옮기기', content: '로봇 팔을 손으로 움직여 원기둥을 잡고 (그리퍼 닫힘) A 지점에서 B 지점으로 옮긴 후 놓는 (그리퍼 열림) 과정을 기록하고 재생합니다.', imagePlaceholder: '[여기에 원기둥을 옮기는 로봇 팔 이미지를 넣으면 학습 효과가 좋습니다]', features: ['<strong>위치 기록</strong> (티칭 버튼 한 번 사용)', '<strong>그리퍼 제어</strong> (티칭 버튼 두 번 사용)'] },
+                    { id: 2, title: '🧱 활동 2: 두 개의 원기둥을 쌓기', content: '첫 번째 원기둥을 A에서 B로 옮긴 후, 다시 원기둥 하나를 A에 놓고 두 번째 원기둥을 가져와 첫 번째 원기둥 위에 쌓는 복합적인 운반 및 정렬 활동입니다.', imagePlaceholder: '[여기에 원기둥 두 개를 차곡차곡 쌓는 이미지를 넣으면 좋습니다]', features: ['연속된 위치 기록', '그리퍼 제어'] },
+                    { id: 3, title: '🔢 활동 3: 여러 물체를 순서대로 옮기기', content: '3개 이상의 작은 물체들을 특정 순서에 따라 지정된 다른 위치로 이동시키는 활동입니다.', imagePlaceholder: '[여기에 1, 2, 3번 물체를 순서대로 옮기는 이미지를 넣으면 좋습니다]', features: ['다단계 운반', '순서 지정', '그리퍼 제어'] },
+                    { id: 4, title: '🎨 활동 4: 물체 분류하기', content: '크기나 색깔이 다른 물체들을 분류하여 각기 다른 공간에 놓는 활동입니다.', imagePlaceholder: '[여기에 색깔 블록을 색깔별 상자에 분류하는 이미지를 넣으면 좋습니다]', features: ['물체 분류', '여러 위치 기록', '그리퍼 제어'] },
+                    { id: 5, title: '✍️ 활동 5: 도형 그리기', content: '그리퍼를 사용하지 않고 로봇 팔의 관절들을 손으로 직접 움직여 공중에서 \'ㅁ\' 또는 \'ㅅ\'과 같은 간단한 도형 모양의 궤적을 기록하고 재생하는 활동입니다.', imagePlaceholder: '[여기에 허공에 사각형을 그리는 로봇팔 궤적을 넣으면 좋습니다]', features: ['위치 기록 (그리퍼 제외)', '4개 관절의 수동 제어'] },
+                    { id: 6, title: '🔄 활동 6: 제자리 반복 활동', content: '그리퍼로 물건을 잡았다가 일정 높이까지 들어 올린 후 다시 원래 위치에 내려놓는 과정을 여러 번 반복하여 기록하는 활동입니다.', imagePlaceholder: '[여기에 물건을 들었다 놨다 하는 로봇팔 이미지를 넣으면 좋습니다]', features: ['반복 동작 기록', '그리퍼 제어'] },
+                    { id: 7, title: '🚧 활동 7: 장애물 피해 운반하기', content: '테이블 위에 놓인 작은 장애물을 넘어서 물체를 A 지점에서 B 지점으로 옮기는 활동입니다.', imagePlaceholder: '[여기에 장애물을 위로 피해가는 로봇팔 이미지를 넣으면 좋습니다]', features: ['정밀한 관절 제어', '장애물 회피 움직임 기록'] },
+                    { id: 8, title: '👋 활동 8: \'인사\'하는 동작 만들기', content: '로봇 팔을 손으로 움직여 위아래로 흔들거나 그리퍼를 열고 닫으며 인사하는 듯한 재미있는 동작을 기록하고 재생합니다.', imagePlaceholder: '[여기에 손을 흔드는 것처럼 움직이는 로봇팔 이미지를 넣으면 좋습니다]', features: ['창의적 움직임 기록', '그리퍼 및 관절 활용'] },
+                    { id: 9, title: '📥 활동 9: 용기에 하나씩 담기', content: '여러 개의 작은 구슬이나 블록을 하나씩 집어 들어 컵이나 상자와 같이 입구가 좁은 용기 안에 정확히 떨어뜨리는 활동입니다.', imagePlaceholder: '[여기에 컵 안에 구슬을 넣는 로봇팔 이미지를 넣으면 좋습니다]', features: ['정교한 집기 및 놓기 (그리퍼 사용)', '정확한 위치 기록'] },
+                    { id: 10, title: '↩️ 활동 10: 초기 위치로 복귀하기', content: '물체 하나를 A에서 B로 옮긴 후, 로봇 팔을 다시 처음 시작했던 초기 위치로 되돌리는 과정을 기록하는 활동입니다. (참고: 전원 버튼을 한 번 누르면 자동으로 초기 위치로 돌아갑니다)', imagePlaceholder: '[여기에 출발점으로 돌아오는 로봇팔 이미지를 넣으면 좋습니다]', features: ['초기 위치 복귀 경로 기록', '연속 동작 기록'] },
+                    { id: 11, title: '⬆️ 활동 11: 정확한 높이로 들어올리기', content: '물체를 집어 든 상태에서 로봇 팔을 손으로 움직여 특정 높이까지 정확하게 들어 올린 후 잠시 멈추는 동작을 기록합니다.', imagePlaceholder: '[여기에 자 옆에서 특정 높이까지 물체를 드는 로봇팔 이미지를 넣으면 좋습니다]', features: ['그리퍼 제어', '정밀한 수직 위치 기록', '관절 제어'] },
+                    { id: 12, title: '🎯 활동 12: 목표 지점 \'터치\'하기', content: '테이블 위나 벽에 표시된 여러 목표 지점을 로봇 팔의 끝(그리퍼 부분)으로 정확히 터치하는 동작을 순서대로 기록합니다. 그리퍼는 사용하지 않습니다.', imagePlaceholder: '[여기에 과녁의 중심을 가리키는 로봇팔 이미지를 넣으면 좋습니다]', features: ['정밀한 궤적 및 위치 기록', '다양한 관절 조합 움직임'] },
+                    { id: 13, title: '〰️ 활동 13: 지그재그 경로로 옮기기', content: '물체를 집어 직선이 아닌 지그재그 형태의 경로를 따라 이동시킨 후 내려놓는 활동을 기록합니다.', imagePlaceholder: '[여기에 지그재그 선을 따라 움직이는 로봇팔 이미지를 넣으면 좋습니다]', features: ['복잡한 경로 기록', '그리퍼 제어'] },
+                    { id: 14, title: '📄 활동 14: 얇은 물체 집기', content: '얇은 물체(예: 종이 한 장)를 손상 없이 집어 올리고 다른 곳으로 옮긴 후 놓는 과정을 기록합니다. 그리퍼의 섬세한 조작이 필요합니다.', imagePlaceholder: '[여기에 종이 한 장을 조심스럽게 집는 로봇팔 이미지를 넣으면 좋습니다]', features: ['그리퍼의 정교한 사용', '물체 운반'] },
+                    { id: 15, title: '👏 활동 15: \'손뼉 치는\' 동작 만들기', content: '로봇 팔을 손으로 움직여 두 부분이 부딪히는 듯한 또는 박수를 치는 듯한 동작을 만들어 기록하고 재생합니다.', imagePlaceholder: '[여기에 손뼉을 치듯 빠르게 움직이는 로봇팔 이미지를 넣으면 좋습니다]', features: ['창의적 동작 기록', '그리퍼 및 팔 관절의 연동'] },
+                    { id: 16, title: '📈 활동 16: 바닥에서 테이블 위로 옮기기', content: '테이블 아래 바닥에 놓인 물체를 잡고 들어 올려 테이블 위 특정 위치에 놓는 과정을 기록합니다. 높은 수직 이동 범위가 필요합니다.', imagePlaceholder: '[여기에 바닥의 물건을 책상 위로 올리는 로봇팔 이미지를 넣으면 좋습니다]', features: ['넓은 범위의 관절 움직임 기록', '그리퍼 제어'] },
+                    { id: 17, title: '🧩 활동 17: 간단한 조립 시뮬레이션', content: '두 개의 블록 중 하나를 잡고 다른 블록 위에 정확하게 끼워 넣는 듯한 조립 동작을 시뮬레이션하여 기록합니다.', imagePlaceholder: '[여기에 레고 블록 두 개를 조립하는 로봇팔 이미지를 넣으면 좋습니다]', features: ['정교한 위치 및 방향 제어', '그리퍼 사용'] },
+                    { id: 18, title: '🔄 활동 18: 들어 올린 후 회전시키기', content: '물체를 잡고 수직으로 들어 올린 후, 로봇 팔 전체를 회전시켜 물체의 방향을 바꾼 다음 내려놓는 과정을 기록합니다.', imagePlaceholder: '[여기에 물체를 들고 90도 회전하는 로봇팔 이미지를 넣으면 좋습니다]', features: ['다중 관절 회전', '그리퍼 제어', '복합적인 운반'] },
+                    { id: 19, title: '🧘 활동 19: 대기 포즈 취하기', content: '물체를 A에서 B로 옮긴 후, 로봇 팔이 특정 대기 포즈(예: 팔을 가지런히 모으거나 위로 들어 올린 포즈)를 취하는 과정을 기록합니다.', imagePlaceholder: '[여기에 차렷 자세처럼 대기하는 로봇팔 이미지를 넣으면 좋습니다]', features: ['연속 동작 기록', '특정 포즈 기록'] },
+                    { id: 20, title: '📏 활동 20: 점선을 따라 물체 옮기기', content: '테이블에 그려진 점선 경로를 따라 물체를 정확히 이동시키는 활동입니다. 로봇 팔의 움직임과 그리퍼 사용을 정밀하게 기록하여 선을 벗어나지 않도록 합니다.', imagePlaceholder: '[여기에 점선을 따라가는 로봇팔 끝을 클로즈업한 이미지를 넣으면 좋습니다]', features: ['정밀 경로 추적', '그리퍼 제어', '미세한 위치 기록'] }
+                ]
+            }));
+
+            // 모바일 메뉴의 텍스트를 실제 활동 제목으로 업데이트하는 로직
+            const activityTitles = [
+                "📦 원기둥 옮기기", "🧱 원기둥 쌓기", "🔢 순서대로 옮기기", "🎨 물체 분류하기", "✍️ 도형 그리기",
+                "🔄 제자리 반복", "🚧 장애물 피하기", "👋 인사하기", "📥 용기에 담기", "↩️ 초기 위치 복귀",
+                "⬆️ 높이 조절", "🎯 목표 지점 터치", "〰️ 지그재그 이동", "📄 얇은 물체 집기", "👏 손뼉 치기",
+                "📈 바닥->테이블", "🧩 간단 조립", "🔄 들고 회전하기", "🧘 대기 포즈", "📏 점선 따라가기"
+            ];
+            document.querySelectorAll('[data-activity-index]').forEach(el => {
+                const index = parseInt(el.dataset.activityIndex);
+                if(activityTitles[index-1]) {
+                    el.textContent = `${index}. ${activityTitles[index-1]}`;
                 }
             });
         });
