@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🤖 라쿤 로봇 언플러그드 활동 슬라이드 (이미지 최종본)</title>
+    <title>🤖 라쿤 로봇 언플러그드 활동 가이드 및 미션</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -17,7 +17,7 @@
             background-color: #f0f9ff; /* sky-50 */
             color: #1e293b; /* 군청색 계열: slate-800 */
         }
-        /* 스크롤바 디자인 (네비게이션 메뉴 및 슬라이드 내부용) */
+        /* 스크롤바 디자인 */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-thumb { background-color: #14b8a6; border-radius: 10px; }
         ::-webkit-scrollbar-track { background-color: #ccfbf1; }
@@ -34,14 +34,23 @@
                 </div>
                 
                 <nav class="hidden md:flex items-center space-x-2">
-                    <a href="#" @click.prevent="currentSlide = 0" class="px-3 py-2 text-slate-700 font-semibold hover:text-teal-600 transition-colors">📖 사용 방법</a>
+                    <a href="#" @click.prevent="currentSlide = 0" class="px-3 py-2 text-slate-700 font-semibold hover:text-teal-600 transition-colors">📖 가이드</a>
                     <div class="relative group">
-                        <button class="px-3 py-2 text-slate-700 font-semibold hover:text-teal-600 transition-colors">활동 예시 🔽</button>
-                        <div class="absolute hidden group-hover:block right-0 mt-1 bg-white shadow-lg rounded-lg w-96 max-h-96 overflow-y-auto z-50">
-                            <div class="grid grid-cols-2 gap-1 p-2">
-                                <template x-for="(activity, index) in activities" :key="index">
-                                    <a href="#" @click.prevent="currentSlide = index + 1" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded" x-text="activity.title"></a>
-                                </template>
+                        <button class="px-3 py-2 text-slate-700 font-semibold hover:text-teal-600 transition-colors">미션 목록 🔽</button>
+                        <div class="absolute hidden group-hover:block right-0 mt-1 bg-white shadow-lg rounded-lg w-[30rem] max-h-96 overflow-y-auto z-50">
+                            <div class="p-2">
+                                <h4 class="px-2 pt-1 pb-2 font-bold text-teal-600">개인 미션</h4>
+                                <div class="grid grid-cols-2 gap-1">
+                                    <template x-for="(mission, index) in missions" :key="index">
+                                        <a x-show="mission.type === '개인'" href="#" @click.prevent="currentSlide = index + 1" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded" x-text="`${mission.number}. ${mission.title}`"></a>
+                                    </template>
+                                </div>
+                                <h4 class="px-2 pt-3 pb-2 font-bold text-orange-600">팀 미션</h4>
+                                <div class="grid grid-cols-2 gap-1">
+                                    <template x-for="(mission, index) in missions" :key="index">
+                                        <a x-show="mission.type === '팀'" href="#" @click.prevent="currentSlide = index + 1" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded" x-text="`${mission.number}. ${mission.title}`"></a>
+                                    </template>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -49,10 +58,7 @@
 
                 <div class="md:hidden">
                     <button @click="navOpen = !navOpen" class="text-slate-800 focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                            <path x-show="!navOpen" d="M4 6h16M4 12h16m-7 6h7"></path>
-                            <path x-show="navOpen" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path x-show="!navOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path><path x-show="navOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     </button>
                 </div>
             </div>
@@ -60,10 +66,9 @@
         
         <nav x-show="navOpen" @click.away="navOpen = false" class="md:hidden bg-white border-t border-gray-200" x-transition>
              <div class="px-2 pt-2 pb-3 space-y-1 max-h-80 overflow-y-auto">
-                 <a href="#" @click.prevent="currentSlide = 0; navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">📖 사용 방법</a>
-                 <h3 class="px-3 pt-4 pb-2 text-sm font-bold text-slate-500">활동 예시</h3>
-                 <template x-for="(activity, index) in activities" :key="index">
-                     <a href="#" @click.prevent="currentSlide = index + 1; navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md" x-text="activity.title"></a>
+                 <a href="#" @click.prevent="currentSlide = 0; navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">📖 가이드</a>
+                 <template x-for="(mission, index) in missions" :key="index">
+                     <a href="#" @click.prevent="currentSlide = index + 1; navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md" x-text="`${mission.type} 미션 ${mission.number}. ${mission.title}`"></a>
                  </template>
             </div>
         </nav>
@@ -71,43 +76,65 @@
 
     <main class="py-8 sm:py-12">
         <div class="relative max-w-6xl mx-auto px-4">
-            
             <div class="relative w-full pt-[56.25%] bg-white rounded-xl shadow-2xl">
                 <div class="absolute top-0 left-0 w-full h-full p-6 sm:p-8 md:p-12 flex flex-col justify-center overflow-y-auto">
                     
                     <div x-show="currentSlide === 0" x-transition.opacity.duration.300ms>
-                        <section>
-                            <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6 flex items-center"><span class="mr-3 text-4xl">📖</span>언플러그드 모드 사용 방법</h2>
-                            <ol class="space-y-4 text-slate-700 text-[32px] leading-loose">
-                                <li class="flex items-start"><span class="mr-4 text-teal-500">1.</span> <div><strong class="text-slate-800">전원 켜기:</strong> 전원 버튼을 한 번 누릅니다.</div></li>
-                                <li class="flex items-start"><span class="mr-4 text-teal-500">2.</span> <div><strong class="text-slate-800">모드 진입:</strong> 티칭 버튼을 한 번 누릅니다.</div></li>
-                                <li class="flex items-start"><span class="mr-4 text-teal-500">3.</span> <div><strong class="text-slate-800">위치/그리퍼 기록:</strong> 티칭 버튼을 <strong class="text-teal-600">한 번</strong>(위치), <strong class="text-teal-600">두 번</strong>(그리퍼) 누릅니다.</div></li>
-                                <li class="mt-4 bg-orange-100 border-l-4 border-orange-400 text-orange-800 p-3 rounded-r-lg text-2xl">
-                                    <p class="font-bold flex items-center"><span class="text-2xl mr-2">⚠️</span>주의! 팔을 너무 세게 움직이면 안 돼요.</p>
-                                </li>
-                            </ol>
+                        <section class="grid md:grid-cols-2 gap-8 items-center">
+                             <div>
+                                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">언플러그드 모드: 로봇 움직임 직접 제어하기</h2>
+                                <p class="text-[32px] leading-relaxed text-slate-600 mb-6">코딩 없이 손으로 직접 로봇의 동작을 기록하고 재생하는 기능입니다.</p>
+                            </div>
+                            <div class="text-2xl leading-relaxed space-y-4">
+                                <div>
+                                    <h3 class="font-bold text-teal-600">🕹️ 조작 방법</h3>
+                                    <ul class="list-disc list-inside ml-2">
+                                        <li><strong class="font-semibold">모드 진입:</strong> 전원 ON → 티칭 버튼</li>
+                                        <li><strong class="font-semibold">위치 기록:</strong> 티칭 버튼 1번 클릭</li>
+                                        <li><strong class="font-semibold">그리퍼 기록:</strong> 티칭 버튼 2번 클릭</li>
+                                        <li><strong class="font-semibold">동작 재생:</strong> 재생 버튼</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-orange-600">🗑️ 삭제 방법</h3>
+                                    <ul class="list-disc list-inside ml-2">
+                                        <li><strong class="font-semibold">마지막 동작 삭제:</strong> 삭제 버튼 1번 클릭</li>
+                                        <li><strong class="font-semibold">전체 삭제:</strong> 삭제 버튼 길게 누르기</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-orange-100 border-l-4 border-orange-400 text-orange-800 p-3 rounded-r-lg">
+                                    <p class="font-bold flex items-center"><span class="text-2xl mr-2">⚠️</span>주의! 팔을 너무 세게 움직이면 고장날 수 있어요.</p>
+                                </div>
+                            </div>
                         </section>
                     </div>
 
-                    <template x-for="(slide, index) in activities" :key="index">
+                    <template x-for="(mission, index) in missions" :key="index">
                         <div x-show="currentSlide === (index + 1)" x-transition.opacity.duration.300ms class="flex flex-col md:flex-row items-center gap-8">
-                            <div class="w-full md:w-1/2 space-y-4">
-                                <h2 class="text-3xl md:text-4xl font-bold text-slate-800" x-text="slide.title"></h2>
-                                <div class="text-[32px] leading-loose space-y-4">
-                                    <p><span class="text-xl text-teal-700 font-bold">활동 내용:</span> <span x-text="slide.content"></span></p>
-                                    <div class="bg-teal-50 border border-teal-200 rounded-lg p-4 text-2xl">
-                                        <h3 class="font-bold text-teal-800 mb-2 flex items-center"><span class="mr-2">💡</span>핵심 기능</h3>
-                                        <ul class="space-y-1 list-inside">
-                                            <template x-for="feature in slide.features">
-                                                <li class="flex items-start"><span class="mr-2 text-teal-500">✅</span><span x-html="feature"></span></li>
+                            <div class="w-full md:w-3/5 space-y-4">
+                                <div class="flex items-center gap-3">
+                                    <span class="font-bold text-xl px-3 py-1 rounded-full" :class="mission.type === '개인' ? 'bg-teal-100 text-teal-800' : 'bg-orange-100 text-orange-800'" x-text="`${mission.type} 미션 ${mission.number}`"></span>
+                                    <span class="font-semibold text-slate-500" x-text="`난이도: ${mission.difficulty}`"></span>
+                                </div>
+                                <h2 class="text-3xl md:text-4xl font-bold text-slate-800" x-text="mission.title"></h2>
+                                <div class="text-[32px] leading-loose">
+                                    <p class="mb-4"><strong class="text-teal-700">미션 내용:</strong> <span x-text="mission.missionContent"></span></p>
+                                    <div>
+                                        <h3 class="font-bold text-teal-700">수행 방법:</h3>
+                                        <ol class="list-decimal list-inside text-2xl leading-relaxed">
+                                            <template x-for="step in mission.howToPerform">
+                                                <li x-text="step"></li>
                                             </template>
-                                        </ul>
+                                        </ol>
+                                    </div>
+                                    <div x-show="mission.specialNote" class="mt-4 p-3 bg-sky-100 border-l-4 border-sky-400 text-sky-800 rounded-r-lg text-xl">
+                                        <p><strong class="font-bold">🎓 학습 포인트:</strong> <span x-text="mission.specialNote"></span></p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="w-full md:w-1/2">
-                                <div class="aspect-video bg-sky-100 rounded-lg overflow-hidden">
-                                    <img :src="slide.imageUrl" :alt="slide.title" class="w-full h-full object-cover">
+                            <div class="w-full md:w-2/5">
+                                <div class="aspect-video bg-sky-100 rounded-lg overflow-hidden shadow-lg">
+                                    <img :src="mission.imageUrl" :alt="mission.title" class="w-full h-full object-cover">
                                 </div>
                             </div>
                         </div>
@@ -117,49 +144,48 @@
 
             <div class="mt-6 flex items-center justify-center space-x-4 sm:space-x-6">
                 <button @click="currentSlide = Math.max(0, currentSlide - 1)" :disabled="currentSlide === 0" class="p-3 rounded-full bg-white shadow-md hover:bg-sky-100 disabled:opacity-50 disabled:cursor-not-allowed transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                    <svg class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
                 </button>
                 <div class="font-bold text-slate-600 text-lg tabular-nums">
                     <span x-text="currentSlide + 1"></span>
-                    <span class="font-normal text-slate-500" x-text="`/ ${activities.length + 1}`"></span>
+                    <span class="font-normal text-slate-500" x-text="`/ ${missions.length + 1}`"></span>
                 </div>
-                <button @click="currentSlide = Math.min(activities.length, currentSlide + 1)" :disabled="currentSlide === activities.length" class="p-3 rounded-full bg-white shadow-md hover:bg-sky-100 disabled:opacity-50 disabled:cursor-not-allowed transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                <button @click="currentSlide = Math.min(missions.length, currentSlide + 1)" :disabled="currentSlide === missions.length" class="p-3 rounded-full bg-white shadow-md hover:bg-sky-100 disabled:opacity-50 disabled:cursor-not-allowed transition">
+                    <svg class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                 </button>
             </div>
         </div>
     </main>
-    
-    <footer class="text-center py-6 mt-8">
-        <p class="text-slate-500">Created by 교육 콘텐츠 시각화 전문가 for Raccoon Robot Education</p>
-    </footer>
     
     <script>
         function slideComponent() {
             return {
                 navOpen: false,
                 currentSlide: 0,
-                activities: [
-                    { title: '📦 1. 원기둥 옮기기', content: '원기둥을 잡고 A에서 B로 옮긴 후 놓습니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=1.%20원기둥%20옮기기', features: ['<strong>위치 기록</strong>', '<strong>그리퍼 제어</strong>'] },
-                    { title: '🧱 2. 원기둥 쌓기', content: '원기둥을 옮겨 다른 원기둥 위에 쌓습니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=2.%20원기둥%20쌓기', features: ['연속된 위치 기록', '그리퍼 제어'] },
-                    { title: '🔢 3. 순서대로 옮기기', content: '여러 물체를 정해진 순서대로 옮깁니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=3.%20순서대로%20옮기기', features: ['다단계 운반', '순서 지정'] },
-                    { title: '🎨 4. 물체 분류하기', content: '색깔이 다른 물체를 각각 다른 공간으로 분류합니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=4.%20물체%20분류', features: ['물체 분류', '여러 위치 기록'] },
-                    { title: '✍️ 5. 도형 그리기', content: '로봇 팔로 허공에 사각형 모양을 그립니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=5.%20도형%20그리기', features: ['위치 기록 (그리퍼 제외)', '관절 제어'] },
-                    { title: '🔄 6. 제자리 반복', content: '물건을 잡았다가 들어 올린 후 제자리에 놓습니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=6.%20제자리%20반복', features: ['반복 동작 기록', '그리퍼 제어'] },
-                    { title: '🚧 7. 장애물 피하기', content: '장애물을 넘어서 물체를 옮깁니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=7.%20장애물%20피하기', features: ['정밀한 관절 제어', '장애물 회피'] },
-                    { title: '👋 8. 인사하기', content: '팔을 위아래로 흔들어 인사 동작을 만듭니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=8.%20인사하기', features: ['창의적 움직임', '관절 활용'] },
-                    { title: '📥 9. 용기에 담기', content: '작은 구슬을 집어 컵 안에 넣습니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=9.%20용기에%20담기', features: ['정교한 집기/놓기', '정확한 위치 기록'] },
-                    { title: '↩️ 10. 초기 위치 복귀', content: '작업을 마친 후 처음 시작 위치로 돌아옵니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=10.%20초기%20위치%20복귀', features: ['초기 위치 복귀', '연속 동작'] },
-                    { title: '⬆️ 11. 높이 조절', content: '물체를 정확히 특정 높이까지만 들어 올립니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=11.%20높이%20조절', features: ['그리퍼 제어', '정밀한 수직 위치'] },
-                    { title: '🎯 12. 목표 지점 터치', content: '팔 끝으로 여러 목표 지점을 순서대로 터치합니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=12.%20목표지점%20터치', features: ['정밀한 궤적 기록', '관절 조합'] },
-                    { title: '〰️ 13. 지그재그 이동', content: '물체를 지그재그 경로로 이동시킵니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=13.%20지그재그%20이동', features: ['복잡한 경로 기록', '그리퍼 제어'] },
-                    { title: '📄 14. 얇은 물체 집기', content: '종이 한 장을 손상 없이 집어 옮깁니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=14.%20얇은%20물체%20집기', features: ['정교한 그리퍼 사용', '물체 운반'] },
-                    { title: '👏 15. 손뼉 치기', content: '두 팔이나 그리퍼로 박수 치는 동작을 만듭니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=15.%20손뼉%20치기', features: ['창의적 동작', '관절 연동'] },
-                    { title: '📈 16. 바닥에서 테이블 위로', content: '바닥의 물건을 집어 테이블 위로 옮깁니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=16.%20바닥에서%20테이블로', features: ['넓은 범위의 움직임', '그리퍼 제어'] },
-                    { title: '🧩 17. 간단 조립', content: '블록 하나를 다른 블록 위에 끼워 조립합니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=17.%20간단%20조립', features: ['정교한 위치/방향 제어', '그리퍼 사용'] },
-                    { title: '🔄 18. 들고 회전하기', content: '물체를 들어 올린 후, 팔 전체를 회전시킵니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=18.%20들고%20회전하기', features: ['다중 관절 회전', '복합 운반'] },
-                    { title: '🧘 19. 대기 포즈', content: '작업 후, 팔을 모으는 등 특정 포즈로 대기합니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=19.%20대기%20포즈', features: ['연속 동작', '특정 포즈 기록'] },
-                    { title: '📏 20. 점선 따라가기', content: '테이블에 그려진 점선을 따라 물체를 옮깁니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=20.%20점선%20따라가기', features: ['정밀 경로 추적', '미세 위치 기록'] }
+                missions: [
+                    // 개인 미션 10개
+                    { type: '개인', number: 1, difficulty: '쉬움', title: '원기둥 옮기기 기본 (A에서 B로)', missionContent: 'A 지점에 놓인 원기둥 하나를 B 지점으로 옮깁니다.', howToPerform: ['언플러그드 모드 진입', '그리퍼를 열고 원기둥 위로 이동', '그리퍼를 닫아 원기둥 잡기', 'B 지점으로 이동 후 그리퍼 열기', '안전한 위치로 팔 이동 후 재생 확인'], imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=1.%20원기둥%20옮기기' },
+                    { type: '개인', number: 2, difficulty: '쉬움', title: '소리 재생 및 그리퍼 동작', missionContent: '로봇이 특정 소리를 내는 듯한 동작 후 그리퍼를 한 번 열고 닫도록 합니다.', howToPerform: ['언플러그드 모드 진입', '소리를 내는 듯한 특정 동작 기록', '그리퍼 여는 동작 기록', '그리퍼 닫는 동작 기록', '재생하여 확인'], specialNote: '실제 소리는 코딩으로 구현합니다. 언플러그드에서는 동작으로 소리를 표현하는 상상력을 발휘해 보세요.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=2.%20소리%20흉내내기' },
+                    { type: '개인', number: 3, difficulty: '쉬움-보통', title: '오지마 동작 구현', missionContent: "로봇 팔이 '오지마' 혹은 '멈춰'와 같은 제스처를 취하도록 합니다.", howToPerform: ['언플러그드 모드 진입', '팔을 들어올리고 손바닥처럼 그리퍼 펴기', '해당 동작을 여러 번 반복 기록', '재생하여 확인'], imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=3.%20멈춰!%20제스처' },
+                    { type: '개인', number: 4, difficulty: '보통', title: '작은 물체 정밀하게 잡기', missionContent: '작은 물체(예: 동전)를 정확하게 집어 다른 지정된 위치로 옮깁니다.', howToPerform: ['언플러그드 모드 진입', '4개 관절을 미세하게 조절하여 물체 위로 이동', '정교하게 그리퍼를 여닫아 물체 잡기', '지정된 위치로 옮긴 후 재생 확인'], imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=4.%20정밀하게%20잡기' },
+                    { type: '개인', number: 5, difficulty: '보통', title: '장애물 피해서 물체 옮기기', missionContent: '로봇과 목표 지점 사이의 장애물을 피해서 원기둥을 옮깁니다.', howToPerform: ['언플러그드 모드 진입', '원기둥 잡기', '장애물 위 또는 옆으로 피하는 경로 기록', '목표 지점에 원기둥 놓기', '재생하여 충돌 없는지 확인'], imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=5.%20장애물%20회피' },
+                    { type: '개인', number: 6, difficulty: '보통-어려움', title: '순서대로 원기둥 쌓기 (2개)', missionContent: 'A의 원기둥을 B로 옮긴 후, 다른 원기둥을 그 위에 쌓아 올립니다.', howToPerform: ['첫 번째 원기둥을 A에서 B로 옮기기', '두 번째 원기둥을 집기', '첫 번째 원기둥 위에 정확히 놓기', '재생하여 확인'], imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=6.%20원기둥%202개%20쌓기' },
+                    { type: '개인', number: 7, difficulty: '보통-어려움', title: '특정 위치에 그리퍼 정렬', missionContent: '그리퍼를 3cm x 3cm 사각형 중앙에 정확히 정렬하고 3초간 유지합니다.', howToPerform: ['언플러그드 모드 진입', '그리퍼 중심을 사각형 중앙에 맞추기', '그리퍼 닫는 동작 기록', '사용자가 직접 3초간 기다리기'], specialNote: '정확한 시간 제어(wait)는 코딩 미션에서 배울 수 있습니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=7.%20정확히%20정렬' },
+                    { type: '개인', number: 8, difficulty: '어려움', title: '3개 이상의 원기둥 쌓기', missionContent: 'A 지점의 원기둥 3개 이상을 B 지점에 차례로 옮겨 쌓습니다.', howToPerform: ['미션 6의 방법으로 2개 쌓기', '세 번째 원기둥을 집어 2층 위에 쌓기', '과정을 반복하여 3층 이상 쌓기', '재생하여 확인'], imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=8.%203개%20이상%20쌓기' },
+                    { type: '개인', number: 9, difficulty: '어려움', title: '그리퍼 수직 유지 모드 활용 (상상)', missionContent: '그리퍼가 항상 수직을 유지하는 것처럼 원기둥을 옮깁니다.', howToPerform: ['언플러그드 모드 진입', '이동하는 동안 4번 관절을 수동 조절', '그리퍼가 바닥과 수직이 되도록 노력하며 기록', '재생하여 수직 유지 정도 확인'], specialNote: '자동 수직 유지 기능은 코딩을 통해 더 쉽게 구현할 수 있습니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=9.%20수직%20유지하기' },
+                    { type: '개인', number: 10, difficulty: '어려움', title: '복합 동작 시퀀스 기록', missionContent: 'A에서 원기둥을 집어 B에 놓고, 지정된 대기 위치로 돌아옵니다.', howToPerform: ['A에서 원기둥 잡기', 'B에 원기둥 놓기', '초기 위치가 아닌 지정된 대기 위치로 이동 기록', '재생하여 전체 시퀀스 확인'], imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=10.%20복합%20시퀀스' },
+                    
+                    // 팀 미션 10개
+                    { type: '팀', number: 1, difficulty: '쉬움', title: '환영 동작 제스처 만들기', missionContent: '팀원과 협력하여 로봇 팔이 사람을 환영하는 듯한 제스처를 만듭니다.', howToPerform: ['팀원과 동작 계획', '한 명은 팔을 움직이고 다른 한 명은 버튼 누르기', '재생하며 함께 평가 및 수정'], imageUrl: 'https://placehold.co/1280x720/fff7ed/c2410c?text=팀미션1.%20환영%20동작' },
+                    { type: '팀', number: 2, difficulty: '쉬움-보통', title: '로봇 악수 시뮬레이션', missionContent: '로봇 팔이 사람의 손과 악수하는 것처럼 동작하도록 기록합니다.', howToPerform: ['팀원과 악수 위치로 이동 및 기록', '그리퍼를 여닫아 잡고 놓는 동작 기록', '자연스럽게 원래 위치로 복귀', '재생하여 확인'], imageUrl: 'https://placehold.co/1280x720/fff7ed/c2410c?text=팀미션2.%20로봇%20악수' },
+                    { type: '팀', number: 3, difficulty: '보통', title: '릴레이 원기둥 옮기기', missionContent: '두 개의 원기둥을 각기 다른 팀원이 릴레이 형식으로 옮깁니다.', howToPerform: ['첫 팀원이 첫 원기둥 옮기기 기록', '두 번째 팀원이 두 번째 원기둥 옮기기 이어서 기록', '재생하여 순서대로 옮겨지는지 확인'], imageUrl: 'https://placehold.co/1280x720/fff7ed/c2410c?text=팀미션3.%20릴레이%20운반' },
+                    { type: '팀', number: 4, difficulty: '보통', title: '다과 준비 시뮬레이션', missionContent: '트레이 위 다과 중 하나를 집어 다른 접시로 옮깁니다.', howToPerform: ['팀원과 옮길 다과와 경로 계획', '계획에 따라 집고, 이동하고, 놓는 동작 기록', '정확한 그리퍼 타이밍 연습', '재생하여 확인'], imageUrl: 'https://placehold.co/1280x720/fff7ed/c2410c?text=팀미션4.%20다과%20준비' },
+                    { type: '팀', number: 5, difficulty: '보통-어려움', title: '원기둥 피라미드 만들기 (3개)', missionContent: '3개의 원기둥으로 안정적인 피라미드 형태(바닥 2, 위 1)를 쌓습니다.', howToPerform: ['팀원과 쌓을 위치와 순서 계획', '바닥에 원기둥 2개 놓기 기록', '나머지 1개를 그 위에 쌓기 기록', '재생하여 안정성 확인'], imageUrl: 'https://placehold.co/1280x720/fff7ed/c2410c?text=팀미션5.%20피라미드' },
+                    { type: '팀', number: 6, difficulty: '보통-어려움', title: '로봇 안전 구역 설정 및 이동', missionContent: '위험 구역을 침범하지 않으면서 안전 구역 내에서 물체를 옮깁니다.', howToPerform: ['팀원과 위험 구역 인지 및 경로 계획', '위험 구역을 우회하여 이동하는 동작 기록', '관절 회전 범위를 고려하여 기록', '재생하여 침범 여부 평가'], imageUrl: 'https://placehold.co/1280x720/fff7ed/c2410c?text=팀미션6.%20안전%20구역' },
+                    { type: '팀', number: 7, difficulty: '어려움', title: '정리 미션 (여러 물체 분류)', missionContent: '3가지 종류의 물체를 각 종류별로 지정된 3개의 다른 구역으로 분류합니다.', howToPerform: ['팀원과 분류 구역 및 순서 계획', '종류별로 집어서 해당 구역으로 옮기는 과정 반복 기록', '효율적인 동선으로 기록', '재생하여 분류 정확도 확인'], imageUrl: 'https://placehold.co/1280x720/fff7ed/c2410c?text=팀미션7.%20물체%20분류' },
+                    { type: '팀', number: 8, difficulty: '어려움', title: '복잡한 경로 따라가기', missionContent: "'S'자나 'ㄱ'자 등 복잡하게 꺾인 경로를 따라가며 물체를 운반합니다.", howToPerform: ['팀원과 세밀한 관절 움직임 논의', '경로의 각 지점에서 위치/방향 정교하게 기록', '물체가 떨어지지 않도록 주의', '재생하여 경로 추적 정확도 평가'], imageUrl: 'https://placehold.co/1280x720/fff7ed/c2410c?text=팀미션8.%20경로%20따라가기' },
+                    { type: '팀', number: 9, difficulty: '어려움', title: '퍼즐 조각 놓기', missionContent: '정사각형 블록을 집어, 다른 지정된 빈 공간(홈)에 정확히 끼워 넣습니다.', howToPerform: ['팀원과 끼워넣을 각도 및 높이 논의', '블록을 집는 동작 기록', '4번 관절을 조절하며 홈에 정확히 내려놓기', '재생하여 정확도 확인 및 수정'], imageUrl: 'https://placehold.co/1280x720/fff7ed/c2410c?text=팀미션9.%20퍼즐%20놓기' },
+                    { type: '팀', number: 10, difficulty: '최상', title: '복합 공장 자동화 시뮬레이션', missionContent: '원기둥 2개를 각각 다른 지점에 놓은 후, 그 중 하나를 다른 하나 위에 쌓습니다.', howToPerform: ['팀원과 전체 프로세스 계획', '1번 원기둥: 시작 → A지점', '2번 원기둥: 시작 → B지점', '쌓기: B의 원기둥 → A의 원기둥 위', '재생하여 전체 공정 성공 확인'], imageUrl: 'https://placehold.co/1280x720/fff7ed/c2410c?text=팀미션10.%20공장%20자동화' }
                 ]
             }
         }
