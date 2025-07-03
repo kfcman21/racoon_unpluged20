@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🤖 라쿤 로봇 언플러그드 활동 슬라이드 (16:9 버전)</title>
+    <title>🤖 라쿤 로봇 언플러그드 활동 슬라이드 (이미지 최종본)</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -40,7 +40,7 @@
                         <div class="absolute hidden group-hover:block right-0 mt-1 bg-white shadow-lg rounded-lg w-96 max-h-96 overflow-y-auto z-50">
                             <div class="grid grid-cols-2 gap-1 p-2">
                                 <template x-for="(activity, index) in activities" :key="index">
-                                    <a href="#" @click.prevent="currentSlide = index + 1" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded" x-text="`${index + 1}. ${activity.title}`"></a>
+                                    <a href="#" @click.prevent="currentSlide = index + 1" class="block px-3 py-2 text-sm text-slate-700 hover:bg-sky-100 rounded" x-text="activity.title"></a>
                                 </template>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                  <a href="#" @click.prevent="currentSlide = 0; navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md">📖 사용 방법</a>
                  <h3 class="px-3 pt-4 pb-2 text-sm font-bold text-slate-500">활동 예시</h3>
                  <template x-for="(activity, index) in activities" :key="index">
-                     <a href="#" @click.prevent="currentSlide = index + 1; navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md" x-text="`${index + 1}. ${activity.title}`"></a>
+                     <a href="#" @click.prevent="currentSlide = index + 1; navOpen=false" class="block px-3 py-2 text-base font-medium text-slate-700 hover:text-teal-600 hover:bg-sky-100 rounded-md" x-text="activity.title"></a>
                  </template>
             </div>
         </nav>
@@ -78,31 +78,36 @@
                     <div x-show="currentSlide === 0" x-transition.opacity.duration.300ms>
                         <section>
                             <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6 flex items-center"><span class="mr-3 text-4xl">📖</span>언플러그드 모드 사용 방법</h2>
-                            <ol class="space-y-4 text-slate-700 text-[28px] leading-relaxed">
+                            <ol class="space-y-4 text-slate-700 text-[32px] leading-loose">
                                 <li class="flex items-start"><span class="mr-4 text-teal-500">1.</span> <div><strong class="text-slate-800">전원 켜기:</strong> 전원 버튼을 한 번 누릅니다.</div></li>
                                 <li class="flex items-start"><span class="mr-4 text-teal-500">2.</span> <div><strong class="text-slate-800">모드 진입:</strong> 티칭 버튼을 한 번 누릅니다.</div></li>
                                 <li class="flex items-start"><span class="mr-4 text-teal-500">3.</span> <div><strong class="text-slate-800">위치/그리퍼 기록:</strong> 티칭 버튼을 <strong class="text-teal-600">한 번</strong>(위치), <strong class="text-teal-600">두 번</strong>(그리퍼) 누릅니다.</div></li>
-                                <li class="mt-4 bg-orange-100 border-l-4 border-orange-400 text-orange-800 p-3 rounded-r-lg text-xl">
+                                <li class="mt-4 bg-orange-100 border-l-4 border-orange-400 text-orange-800 p-3 rounded-r-lg text-2xl">
                                     <p class="font-bold flex items-center"><span class="text-2xl mr-2">⚠️</span>주의! 팔을 너무 세게 움직이면 안 돼요.</p>
-                                ...
                                 </li>
                             </ol>
                         </section>
                     </div>
 
                     <template x-for="(slide, index) in activities" :key="index">
-                        <div x-show="currentSlide === (index + 1)" x-transition.opacity.duration.300ms class="space-y-4">
-                            <h2 class="text-3xl md:text-4xl font-bold text-slate-800" x-text="slide.title"></h2>
-                            <div class="text-[28px] leading-relaxed space-y-4">
-                                <p><strong class="text-lg md:text-xl text-teal-700">활동 내용:</strong> <span x-text="slide.content"></span></p>
-                                <div class="p-3 text-center bg-sky-100 border-l-4 border-sky-300 text-lg text-slate-600 italic rounded-r-lg" x-text="slide.imagePlaceholder"></div>
-                                <div class="bg-teal-50 border border-teal-200 rounded-lg p-4">
-                                    <h3 class="font-bold text-teal-800 mb-2 flex items-center text-xl"><span class="mr-2 text-2xl">💡</span>핵심 기능</h3>
-                                    <ul class="space-y-1 list-inside">
-                                        <template x-for="feature in slide.features">
-                                            <li class="flex items-start"><span class="mr-2 text-teal-500">✅</span><span x-html="feature"></span></li>
-                                        </template>
-                                    </ul>
+                        <div x-show="currentSlide === (index + 1)" x-transition.opacity.duration.300ms class="flex flex-col md:flex-row items-center gap-8">
+                            <div class="w-full md:w-1/2 space-y-4">
+                                <h2 class="text-3xl md:text-4xl font-bold text-slate-800" x-text="slide.title"></h2>
+                                <div class="text-[32px] leading-loose space-y-4">
+                                    <p><span class="text-xl text-teal-700 font-bold">활동 내용:</span> <span x-text="slide.content"></span></p>
+                                    <div class="bg-teal-50 border border-teal-200 rounded-lg p-4 text-2xl">
+                                        <h3 class="font-bold text-teal-800 mb-2 flex items-center"><span class="mr-2">💡</span>핵심 기능</h3>
+                                        <ul class="space-y-1 list-inside">
+                                            <template x-for="feature in slide.features">
+                                                <li class="flex items-start"><span class="mr-2 text-teal-500">✅</span><span x-html="feature"></span></li>
+                                            </template>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2">
+                                <div class="aspect-video bg-sky-100 rounded-lg overflow-hidden">
+                                    <img :src="slide.imageUrl" :alt="slide.title" class="w-full h-full object-cover">
                                 </div>
                             </div>
                         </div>
@@ -114,12 +119,10 @@
                 <button @click="currentSlide = Math.max(0, currentSlide - 1)" :disabled="currentSlide === 0" class="p-3 rounded-full bg-white shadow-md hover:bg-sky-100 disabled:opacity-50 disabled:cursor-not-allowed transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
                 </button>
-                
                 <div class="font-bold text-slate-600 text-lg tabular-nums">
                     <span x-text="currentSlide + 1"></span>
                     <span class="font-normal text-slate-500" x-text="`/ ${activities.length + 1}`"></span>
                 </div>
-
                 <button @click="currentSlide = Math.min(activities.length, currentSlide + 1)" :disabled="currentSlide === activities.length" class="p-3 rounded-full bg-white shadow-md hover:bg-sky-100 disabled:opacity-50 disabled:cursor-not-allowed transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                 </button>
@@ -137,26 +140,26 @@
                 navOpen: false,
                 currentSlide: 0,
                 activities: [
-                    { title: '📦 1. 원기둥 옮기기', content: '로봇 팔을 손으로 움직여 원기둥을 잡고 A 지점에서 B 지점으로 옮긴 후 놓는 과정을 기록하고 재생합니다.', imagePlaceholder: '[여기에 원기둥을 옮기는 로봇 팔 이미지를 넣으면 학습 효과가 좋습니다]', features: ['<strong>위치 기록</strong> (티칭 버튼 한 번 사용)', '<strong>그리퍼 제어</strong> (티칭 버튼 두 번 사용)'] },
-                    { title: '🧱 2. 원기둥 쌓기', content: '첫 번째 원기둥을 옮긴 후, 두 번째 원기둥을 가져와 첫 번째 원기둥 위에 쌓는 복합적인 운반 및 정렬 활동입니다.', imagePlaceholder: '[여기에 원기둥 두 개를 차곡차곡 쌓는 이미지를 넣으면 좋습니다]', features: ['연속된 위치 기록', '그리퍼 제어'] },
-                    { title: '🔢 3. 순서대로 옮기기', content: '3개 이상의 작은 물체들을 특정 순서에 따라 지정된 다른 위치로 이동시키는 활동입니다.', imagePlaceholder: '[여기에 1, 2, 3번 물체를 순서대로 옮기는 이미지를 넣으면 좋습니다]', features: ['다단계 운반', '순서 지정', '그리퍼 제어'] },
-                    { title: '🎨 4. 물체 분류하기', content: '크기나 색깔이 다른 물체들을 분류하여 각기 다른 공간에 놓는 활동입니다.', imagePlaceholder: '[여기에 색깔 블록을 색깔별 상자에 분류하는 이미지를 넣으면 좋습니다]', features: ['물체 분류', '여러 위치 기록', '그리퍼 제어'] },
-                    { title: '✍️ 5. 도형 그리기', content: '그리퍼 없이 로봇 팔을 움직여 공중에서 \'ㅁ\' 또는 \'ㅅ\'과 같은 도형 모양의 궤적을 기록하고 재생합니다.', imagePlaceholder: '[여기에 허공에 사각형을 그리는 로봇팔 궤적을 넣으면 좋습니다]', features: ['위치 기록 (그리퍼 제외)', '4개 관절의 수동 제어'] },
-                    { title: '🔄 6. 제자리 반복', content: '그리퍼로 물건을 잡았다가 들어 올린 후 다시 원래 위치에 내려놓는 과정을 여러 번 반복하여 기록합니다.', imagePlaceholder: '[여기에 물건을 들었다 놨다 하는 로봇팔 이미지를 넣으면 좋습니다]', features: ['반복 동작 기록', '그리퍼 제어'] },
-                    { title: '🚧 7. 장애물 피하기', content: '테이블 위 작은 장애물을 넘어서 물체를 A 지점에서 B 지점으로 옮기는 활동입니다.', imagePlaceholder: '[여기에 장애물을 위로 피해가는 로봇팔 이미지를 넣으면 좋습니다]', features: ['정밀한 관절 제어', '장애물 회피 움직임 기록'] },
-                    { title: '👋 8. 인사하기', content: '로봇 팔을 위아래로 흔들거나 그리퍼를 열고 닫으며 인사하는 듯한 재미있는 동작을 기록하고 재생합니다.', imagePlaceholder: '[여기에 손을 흔드는 것처럼 움직이는 로봇팔 이미지를 넣으면 좋습니다]', features: ['창의적 움직임 기록', '그리퍼 및 관절 활용'] },
-                    { title: '📥 9. 용기에 담기', content: '작은 구슬이나 블록을 하나씩 집어 컵이나 상자 같이 입구가 좁은 용기 안에 정확히 떨어뜨리는 활동입니다.', imagePlaceholder: '[여기에 컵 안에 구슬을 넣는 로봇팔 이미지를 넣으면 좋습니다]', features: ['정교한 집기 및 놓기 (그리퍼 사용)', '정확한 위치 기록'] },
-                    { title: '↩️ 10. 초기 위치 복귀', content: '물체를 옮긴 후, 로봇 팔을 다시 처음 시작했던 초기 위치로 되돌리는 과정을 기록합니다.', imagePlaceholder: '[여기에 출발점으로 돌아오는 로봇팔 이미지를 넣으면 좋습니다]', features: ['초기 위치 복귀 경로 기록', '연속 동작 기록'] },
-                    { title: '⬆️ 11. 높이 조절', content: '물체를 집어 특정 높이까지 정확하게 들어 올린 후 잠시 멈추는 동작을 기록합니다.', imagePlaceholder: '[여기에 자 옆에서 특정 높이까지 물체를 드는 로봇팔 이미지를 넣으면 좋습니다]', features: ['그리퍼 제어', '정밀한 수직 위치 기록'] },
-                    { title: '🎯 12. 목표 지점 터치', content: '테이블 위 여러 목표 지점을 로봇 팔 끝으로 정확히 터치하는 동작을 순서대로 기록합니다.', imagePlaceholder: '[여기에 과녁의 중심을 가리키는 로봇팔 이미지를 넣으면 좋습니다]', features: ['정밀한 궤적 및 위치 기록', '다양한 관절 조합'] },
-                    { title: '〰️ 13. 지그재그 이동', content: '물체를 집어 지그재그 형태의 경로를 따라 이동시킨 후 내려놓는 활동을 기록합니다.', imagePlaceholder: '[여기에 지그재그 선을 따라 움직이는 로봇팔 이미지를 넣으면 좋습니다]', features: ['복잡한 경로 기록', '그리퍼 제어'] },
-                    { title: '📄 14. 얇은 물체 집기', content: '종이 한 장 같은 얇은 물체를 손상 없이 집어 다른 곳으로 옮기는 과정을 기록합니다.', imagePlaceholder: '[여기에 종이 한 장을 조심스럽게 집는 로봇팔 이미지를 넣으면 좋습니다]', features: ['그리퍼의 정교한 사용', '물체 운반'] },
-                    { title: '👏 15. 손뼉 치기', content: '로봇 팔을 움직여 박수를 치는 듯한 동작을 만들어 기록하고 재생합니다.', imagePlaceholder: '[여기에 손뼉을 치듯 빠르게 움직이는 로봇팔 이미지를 넣으면 좋습니다]', features: ['창의적 동작 기록', '팔 관절의 연동'] },
-                    { title: '📈 16. 바닥에서 테이블 위로', content: '바닥에 놓인 물체를 잡아 테이블 위 특정 위치에 놓는 과정을 기록합니다.', imagePlaceholder: '[여기에 바닥의 물건을 책상 위로 올리는 로봇팔 이미지를 넣으면 좋습니다]', features: ['넓은 범위의 관절 움직임 기록', '그리퍼 제어'] },
-                    { title: '🧩 17. 간단 조립', content: '두 개의 블록 중 하나를 잡아 다른 블록 위에 정확하게 끼워 넣는 듯한 조립 동작을 시뮬레이션합니다.', imagePlaceholder: '[여기에 레고 블록 두 개를 조립하는 로봇팔 이미지를 넣으면 좋습니다]', features: ['정교한 위치 및 방향 제어', '그리퍼 사용'] },
-                    { title: '🔄 18. 들고 회전하기', content: '물체를 잡고 들어 올린 후, 로봇 팔 전체를 회전시켜 방향을 바꾼 다음 내려놓는 과정을 기록합니다.', imagePlaceholder: '[여기에 물체를 들고 90도 회전하는 로봇팔 이미지를 넣으면 좋습니다]', features: ['다중 관절 회전', '복합적인 운반'] },
-                    { title: '🧘 19. 대기 포즈', content: '물체를 옮긴 후, 로봇 팔이 특정 대기 포즈(예: 팔을 가지런히 모으는 포즈)를 취하는 과정을 기록합니다.', imagePlaceholder: '[여기에 차렷 자세처럼 대기하는 로봇팔 이미지를 넣으면 좋습니다]', features: ['연속 동작 기록', '특정 포즈 기록'] },
-                    { title: '📏 20. 점선 따라가기', content: '테이블에 그려진 점선 경로를 따라 물체를 정확히 이동시키는 활동입니다.', imagePlaceholder: '[여기에 점선을 따라가는 로봇팔 끝을 클로즈업한 이미지를 넣으면 좋습니다]', features: ['정밀 경로 추적', '미세한 위치 기록'] }
+                    { title: '📦 1. 원기둥 옮기기', content: '원기둥을 잡고 A에서 B로 옮긴 후 놓습니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=1.%20원기둥%20옮기기', features: ['<strong>위치 기록</strong>', '<strong>그리퍼 제어</strong>'] },
+                    { title: '🧱 2. 원기둥 쌓기', content: '원기둥을 옮겨 다른 원기둥 위에 쌓습니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=2.%20원기둥%20쌓기', features: ['연속된 위치 기록', '그리퍼 제어'] },
+                    { title: '🔢 3. 순서대로 옮기기', content: '여러 물체를 정해진 순서대로 옮깁니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=3.%20순서대로%20옮기기', features: ['다단계 운반', '순서 지정'] },
+                    { title: '🎨 4. 물체 분류하기', content: '색깔이 다른 물체를 각각 다른 공간으로 분류합니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=4.%20물체%20분류', features: ['물체 분류', '여러 위치 기록'] },
+                    { title: '✍️ 5. 도형 그리기', content: '로봇 팔로 허공에 사각형 모양을 그립니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=5.%20도형%20그리기', features: ['위치 기록 (그리퍼 제외)', '관절 제어'] },
+                    { title: '🔄 6. 제자리 반복', content: '물건을 잡았다가 들어 올린 후 제자리에 놓습니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=6.%20제자리%20반복', features: ['반복 동작 기록', '그리퍼 제어'] },
+                    { title: '🚧 7. 장애물 피하기', content: '장애물을 넘어서 물체를 옮깁니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=7.%20장애물%20피하기', features: ['정밀한 관절 제어', '장애물 회피'] },
+                    { title: '👋 8. 인사하기', content: '팔을 위아래로 흔들어 인사 동작을 만듭니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=8.%20인사하기', features: ['창의적 움직임', '관절 활용'] },
+                    { title: '📥 9. 용기에 담기', content: '작은 구슬을 집어 컵 안에 넣습니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=9.%20용기에%20담기', features: ['정교한 집기/놓기', '정확한 위치 기록'] },
+                    { title: '↩️ 10. 초기 위치 복귀', content: '작업을 마친 후 처음 시작 위치로 돌아옵니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=10.%20초기%20위치%20복귀', features: ['초기 위치 복귀', '연속 동작'] },
+                    { title: '⬆️ 11. 높이 조절', content: '물체를 정확히 특정 높이까지만 들어 올립니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=11.%20높이%20조절', features: ['그리퍼 제어', '정밀한 수직 위치'] },
+                    { title: '🎯 12. 목표 지점 터치', content: '팔 끝으로 여러 목표 지점을 순서대로 터치합니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=12.%20목표지점%20터치', features: ['정밀한 궤적 기록', '관절 조합'] },
+                    { title: '〰️ 13. 지그재그 이동', content: '물체를 지그재그 경로로 이동시킵니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=13.%20지그재그%20이동', features: ['복잡한 경로 기록', '그리퍼 제어'] },
+                    { title: '📄 14. 얇은 물체 집기', content: '종이 한 장을 손상 없이 집어 옮깁니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=14.%20얇은%20물체%20집기', features: ['정교한 그리퍼 사용', '물체 운반'] },
+                    { title: '👏 15. 손뼉 치기', content: '두 팔이나 그리퍼로 박수 치는 동작을 만듭니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=15.%20손뼉%20치기', features: ['창의적 동작', '관절 연동'] },
+                    { title: '📈 16. 바닥에서 테이블 위로', content: '바닥의 물건을 집어 테이블 위로 옮깁니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=16.%20바닥에서%20테이블로', features: ['넓은 범위의 움직임', '그리퍼 제어'] },
+                    { title: '🧩 17. 간단 조립', content: '블록 하나를 다른 블록 위에 끼워 조립합니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=17.%20간단%20조립', features: ['정교한 위치/방향 제어', '그리퍼 사용'] },
+                    { title: '🔄 18. 들고 회전하기', content: '물체를 들어 올린 후, 팔 전체를 회전시킵니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=18.%20들고%20회전하기', features: ['다중 관절 회전', '복합 운반'] },
+                    { title: '🧘 19. 대기 포즈', content: '작업 후, 팔을 모으는 등 특정 포즈로 대기합니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=19.%20대기%20포즈', features: ['연속 동작', '특정 포즈 기록'] },
+                    { title: '📏 20. 점선 따라가기', content: '테이블에 그려진 점선을 따라 물체를 옮깁니다.', imageUrl: 'https://placehold.co/1280x720/e0f2fe/1e293b?text=20.%20점선%20따라가기', features: ['정밀 경로 추적', '미세 위치 기록'] }
                 ]
             }
         }
