@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🤖 라쿤 로봇 언플러그드 활동 슬라이드 (최종 수정본)</title>
+    <title>🤖 라쿤 로봇 언플러그드 활동 슬라이드 (16:9 버전)</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -17,7 +17,7 @@
             background-color: #f0f9ff; /* sky-50 */
             color: #1e293b; /* 군청색 계열: slate-800 */
         }
-        /* 스크롤바 디자인 (네비게이션 메뉴용) */
+        /* 스크롤바 디자인 (네비게이션 메뉴 및 슬라이드 내부용) */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-thumb { background-color: #14b8a6; border-radius: 10px; }
         ::-webkit-scrollbar-track { background-color: #ccfbf1; }
@@ -70,43 +70,44 @@
     </header>
 
     <main class="py-8 sm:py-12">
-        <div class="relative max-w-4xl mx-auto px-4">
+        <div class="relative max-w-6xl mx-auto px-4">
             
-            <div class="bg-white rounded-xl shadow-2xl p-6 sm:p-8 md:p-10 min-h-[550px] sm:min-h-[600px] flex flex-col justify-center relative overflow-hidden">
-                
-                <div x-show="currentSlide === 0" x-transition.opacity.duration.300ms>
-                    <section>
-                        <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center"><span class="mr-3 text-3xl">📖</span>언플러그드 모드 사용 방법</h2>
-                        <ol class="space-y-3 text-slate-700 text-sm sm:text-base">
-                            <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">1.</span> <div><strong class="text-slate-800">전원 켜기:</strong> 전원 버튼을 한 번 눌러 로봇의 전원을 켭니다.</div></li>
-                            <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">2.</span> <div><strong class="text-slate-800">모드 진입:</strong> 티칭 버튼을 한 번 누르면 언플러그드 모드로 진입합니다.</div></li>
-                            <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">3.</span> <div><strong class="text-slate-800">위치 설정:</strong> 로봇 팔을 손으로 직접 움직여 원하는 위치로 이동시킵니다.</div></li>
-                            <div class="my-3 ml-8 bg-orange-100 border-l-4 border-orange-400 text-orange-800 p-3 rounded-r-lg">
-                                <p class="font-bold flex items-center"><span class="text-xl mr-2">⚠️</span>주의! 너무 세게 움직이면 고장날 수 있어요.</p>
-                            </div>
-                            <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">4.</span> <div><strong class="text-slate-800">위치 기록:</strong> 티칭 버튼을 <strong class="text-teal-600">한 번</strong> 누르면 현재 위치가 기록됩니다.</div></li>
-                            <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">5.</span> <div><strong class="text-slate-800">그리퍼 기록:</strong> 티칭 버튼을 <strong class="text-teal-600">두 번</strong> 누르면 그리퍼 상태가 바뀝니다. (열림 ↔ 닫힘)</div></li>
-                            <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">6.</span> <div><strong class="text-slate-800">동작 재생:</strong> 재생 버튼을 누르면 기록된 동작을 순서대로 재생합니다.</div></li>
-                            <li class="flex items-start"><span class="mr-4 text-2xl font-bold text-teal-500">7.</span> <div><strong class="text-slate-800">기록 삭제:</strong> 삭제 버튼을 <strong class="text-teal-600">한 번</strong> 누르면 마지막 동작이, <strong class="text-teal-600">길게</strong> 누르면 모든 동작이 삭제됩니다.</div></li>
-                        </ol>
-                    </section>
-                </div>
-
-                <template x-for="(slide, index) in activities" :key="index">
-                    <div x-show="currentSlide === (index + 1)" x-transition.opacity.duration.300ms class="space-y-4">
-                        <h2 class="text-2xl sm:text-3xl font-bold text-slate-800" x-text="slide.title"></h2>
-                        <p><strong class="text-lg text-teal-700">활동 내용:</strong> <span x-text="slide.content"></span></p>
-                        <div class="p-3 text-center bg-sky-100 border-l-4 border-sky-300 text-sm text-slate-600 italic rounded-r-lg" x-text="slide.imagePlaceholder"></div>
-                        <div class="bg-teal-50 border border-teal-200 rounded-lg p-4">
-                            <h3 class="font-bold text-teal-800 mb-2 flex items-center"><span class="mr-2 text-xl">💡</span>핵심 기능</h3>
-                            <ul class="space-y-1 list-inside">
-                                <template x-for="feature in slide.features">
-                                    <li class="flex items-start"><span class="mr-2 text-teal-500">✅</span><span x-html="feature"></span></li>
-                                </template>
-                            </ul>
-                        </div>
+            <div class="relative w-full pt-[56.25%] bg-white rounded-xl shadow-2xl">
+                <div class="absolute top-0 left-0 w-full h-full p-6 sm:p-8 md:p-12 flex flex-col justify-center overflow-y-auto">
+                    
+                    <div x-show="currentSlide === 0" x-transition.opacity.duration.300ms>
+                        <section>
+                            <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6 flex items-center"><span class="mr-3 text-4xl">📖</span>언플러그드 모드 사용 방법</h2>
+                            <ol class="space-y-4 text-slate-700 text-[28px] leading-relaxed">
+                                <li class="flex items-start"><span class="mr-4 text-teal-500">1.</span> <div><strong class="text-slate-800">전원 켜기:</strong> 전원 버튼을 한 번 누릅니다.</div></li>
+                                <li class="flex items-start"><span class="mr-4 text-teal-500">2.</span> <div><strong class="text-slate-800">모드 진입:</strong> 티칭 버튼을 한 번 누릅니다.</div></li>
+                                <li class="flex items-start"><span class="mr-4 text-teal-500">3.</span> <div><strong class="text-slate-800">위치/그리퍼 기록:</strong> 티칭 버튼을 <strong class="text-teal-600">한 번</strong>(위치), <strong class="text-teal-600">두 번</strong>(그리퍼) 누릅니다.</div></li>
+                                <li class="mt-4 bg-orange-100 border-l-4 border-orange-400 text-orange-800 p-3 rounded-r-lg text-xl">
+                                    <p class="font-bold flex items-center"><span class="text-2xl mr-2">⚠️</span>주의! 팔을 너무 세게 움직이면 안 돼요.</p>
+                                ...
+                                </li>
+                            </ol>
+                        </section>
                     </div>
-                </template>
+
+                    <template x-for="(slide, index) in activities" :key="index">
+                        <div x-show="currentSlide === (index + 1)" x-transition.opacity.duration.300ms class="space-y-4">
+                            <h2 class="text-3xl md:text-4xl font-bold text-slate-800" x-text="slide.title"></h2>
+                            <div class="text-[28px] leading-relaxed space-y-4">
+                                <p><strong class="text-lg md:text-xl text-teal-700">활동 내용:</strong> <span x-text="slide.content"></span></p>
+                                <div class="p-3 text-center bg-sky-100 border-l-4 border-sky-300 text-lg text-slate-600 italic rounded-r-lg" x-text="slide.imagePlaceholder"></div>
+                                <div class="bg-teal-50 border border-teal-200 rounded-lg p-4">
+                                    <h3 class="font-bold text-teal-800 mb-2 flex items-center text-xl"><span class="mr-2 text-2xl">💡</span>핵심 기능</h3>
+                                    <ul class="space-y-1 list-inside">
+                                        <template x-for="feature in slide.features">
+                                            <li class="flex items-start"><span class="mr-2 text-teal-500">✅</span><span x-html="feature"></span></li>
+                                        </template>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
             </div>
 
             <div class="mt-6 flex items-center justify-center space-x-4 sm:space-x-6">
@@ -131,33 +132,31 @@
     </footer>
     
     <script>
-        // Alpine.js 데이터와 로직을 관리하는 함수
         function slideComponent() {
             return {
                 navOpen: false,
                 currentSlide: 0,
-                // 활동 데이터: 20개의 활동을 배열로 관리
                 activities: [
-                    { title: '📦 원기둥 옮기기', content: '로봇 팔을 손으로 움직여 원기둥을 잡고 (그리퍼 닫힘) A 지점에서 B 지점으로 옮긴 후 놓는 (그리퍼 열림) 과정을 기록하고 재생합니다.', imagePlaceholder: '[여기에 원기둥을 옮기는 로봇 팔 이미지를 넣으면 학습 효과가 좋습니다]', features: ['<strong>위치 기록</strong> (티칭 버튼 한 번 사용)', '<strong>그리퍼 제어</strong> (티칭 버튼 두 번 사용)'] },
-                    { title: '🧱 원기둥 쌓기', content: '첫 번째 원기둥을 A에서 B로 옮긴 후, 다시 원기둥 하나를 A에 놓고 두 번째 원기둥을 가져와 첫 번째 원기둥 위에 쌓는 복합적인 운반 및 정렬 활동입니다.', imagePlaceholder: '[여기에 원기둥 두 개를 차곡차곡 쌓는 이미지를 넣으면 좋습니다]', features: ['연속된 위치 기록', '그리퍼 제어'] },
-                    { title: '🔢 순서대로 옮기기', content: '3개 이상의 작은 물체들을 특정 순서에 따라 지정된 다른 위치로 이동시키는 활동입니다.', imagePlaceholder: '[여기에 1, 2, 3번 물체를 순서대로 옮기는 이미지를 넣으면 좋습니다]', features: ['다단계 운반', '순서 지정', '그리퍼 제어'] },
-                    { title: '🎨 물체 분류하기', content: '크기나 색깔이 다른 물체들을 분류하여 각기 다른 공간에 놓는 활동입니다.', imagePlaceholder: '[여기에 색깔 블록을 색깔별 상자에 분류하는 이미지를 넣으면 좋습니다]', features: ['물체 분류', '여러 위치 기록', '그리퍼 제어'] },
-                    { title: '✍️ 도형 그리기', content: '그리퍼를 사용하지 않고 로봇 팔의 관절들을 손으로 직접 움직여 공중에서 \'ㅁ\' 또는 \'ㅅ\'과 같은 간단한 도형 모양의 궤적을 기록하고 재생하는 활동입니다.', imagePlaceholder: '[여기에 허공에 사각형을 그리는 로봇팔 궤적을 넣으면 좋습니다]', features: ['위치 기록 (그리퍼 제외)', '4개 관절의 수동 제어'] },
-                    { title: '🔄 제자리 반복', content: '그리퍼로 물건을 잡았다가 일정 높이까지 들어 올린 후 다시 원래 위치에 내려놓는 과정을 여러 번 반복하여 기록하는 활동입니다.', imagePlaceholder: '[여기에 물건을 들었다 놨다 하는 로봇팔 이미지를 넣으면 좋습니다]', features: ['반복 동작 기록', '그리퍼 제어'] },
-                    { title: '🚧 장애물 피하기', content: '테이블 위에 놓인 작은 장애물을 넘어서 물체를 A 지점에서 B 지점으로 옮기는 활동입니다.', imagePlaceholder: '[여기에 장애물을 위로 피해가는 로봇팔 이미지를 넣으면 좋습니다]', features: ['정밀한 관절 제어', '장애물 회피 움직임 기록'] },
-                    { title: '👋 인사하기', content: '로봇 팔을 손으로 움직여 위아래로 흔들거나 그리퍼를 열고 닫으며 인사하는 듯한 재미있는 동작을 기록하고 재생합니다.', imagePlaceholder: '[여기에 손을 흔드는 것처럼 움직이는 로봇팔 이미지를 넣으면 좋습니다]', features: ['창의적 움직임 기록', '그리퍼 및 관절 활용'] },
-                    { title: '📥 용기에 담기', content: '여러 개의 작은 구슬이나 블록을 하나씩 집어 들어 컵이나 상자와 같이 입구가 좁은 용기 안에 정확히 떨어뜨리는 활동입니다.', imagePlaceholder: '[여기에 컵 안에 구슬을 넣는 로봇팔 이미지를 넣으면 좋습니다]', features: ['정교한 집기 및 놓기 (그리퍼 사용)', '정확한 위치 기록'] },
-                    { title: '↩️ 초기 위치 복귀', content: '물체 하나를 A에서 B로 옮긴 후, 로봇 팔을 다시 처음 시작했던 초기 위치로 되돌리는 과정을 기록하는 활동입니다. (참고: 전원 버튼을 한 번 누르면 자동으로 초기 위치로 돌아갑니다)', imagePlaceholder: '[여기에 출발점으로 돌아오는 로봇팔 이미지를 넣으면 좋습니다]', features: ['초기 위치 복귀 경로 기록', '연속 동작 기록'] },
-                    { title: '⬆️ 높이 조절', content: '물체를 집어 든 상태에서 로봇 팔을 손으로 움직여 특정 높이까지 정확하게 들어 올린 후 잠시 멈추는 동작을 기록합니다.', imagePlaceholder: '[여기에 자 옆에서 특정 높이까지 물체를 드는 로봇팔 이미지를 넣으면 좋습니다]', features: ['그리퍼 제어', '정밀한 수직 위치 기록', '관절 제어'] },
-                    { title: '🎯 목표 지점 터치', content: '테이블 위나 벽에 표시된 여러 목표 지점을 로봇 팔의 끝(그리퍼 부분)으로 정확히 터치하는 동작을 순서대로 기록합니다. 그리퍼는 사용하지 않습니다.', imagePlaceholder: '[여기에 과녁의 중심을 가리키는 로봇팔 이미지를 넣으면 좋습니다]', features: ['정밀한 궤적 및 위치 기록', '다양한 관절 조합 움직임'] },
-                    { title: '〰️ 지그재그 이동', content: '물체를 집어 직선이 아닌 지그재그 형태의 경로를 따라 이동시킨 후 내려놓는 활동을 기록합니다.', imagePlaceholder: '[여기에 지그재그 선을 따라 움직이는 로봇팔 이미지를 넣으면 좋습니다]', features: ['복잡한 경로 기록', '그리퍼 제어'] },
-                    { title: '📄 얇은 물체 집기', content: '얇은 물체(예: 종이 한 장)를 손상 없이 집어 올리고 다른 곳으로 옮긴 후 놓는 과정을 기록합니다. 그리퍼의 섬세한 조작이 필요합니다.', imagePlaceholder: '[여기에 종이 한 장을 조심스럽게 집는 로봇팔 이미지를 넣으면 좋습니다]', features: ['그리퍼의 정교한 사용', '물체 운반'] },
-                    { title: '👏 손뼉 치기', content: '로봇 팔을 손으로 움직여 두 부분이 부딪히는 듯한 또는 박수를 치는 듯한 동작을 만들어 기록하고 재생합니다.', imagePlaceholder: '[여기에 손뼉을 치듯 빠르게 움직이는 로봇팔 이미지를 넣으면 좋습니다]', features: ['창의적 동작 기록', '그리퍼 및 팔 관절의 연동'] },
-                    { title: '📈 바닥에서 테이블 위로', content: '테이블 아래 바닥에 놓인 물체를 잡고 들어 올려 테이블 위 특정 위치에 놓는 과정을 기록합니다. 높은 수직 이동 범위가 필요합니다.', imagePlaceholder: '[여기에 바닥의 물건을 책상 위로 올리는 로봇팔 이미지를 넣으면 좋습니다]', features: ['넓은 범위의 관절 움직임 기록', '그리퍼 제어'] },
-                    { title: '🧩 간단 조립', content: '두 개의 블록 중 하나를 잡고 다른 블록 위에 정확하게 끼워 넣는 듯한 조립 동작을 시뮬레이션하여 기록합니다.', imagePlaceholder: '[여기에 레고 블록 두 개를 조립하는 로봇팔 이미지를 넣으면 좋습니다]', features: ['정교한 위치 및 방향 제어', '그리퍼 사용'] },
-                    { title: '🔄 들고 회전하기', content: '물체를 잡고 수직으로 들어 올린 후, 로봇 팔 전체를 회전시켜 물체의 방향을 바꾼 다음 내려놓는 과정을 기록합니다.', imagePlaceholder: '[여기에 물체를 들고 90도 회전하는 로봇팔 이미지를 넣으면 좋습니다]', features: ['다중 관절 회전', '그리퍼 제어', '복합적인 운반'] },
-                    { title: '🧘 대기 포즈', content: '물체를 A에서 B로 옮긴 후, 로봇 팔이 특정 대기 포즈(예: 팔을 가지런히 모으거나 위로 들어 올린 포즈)를 취하는 과정을 기록합니다.', imagePlaceholder: '[여기에 차렷 자세처럼 대기하는 로봇팔 이미지를 넣으면 좋습니다]', features: ['연속 동작 기록', '특정 포즈 기록'] },
-                    { title: '📏 점선 따라가기', content: '테이블에 그려진 점선 경로를 따라 물체를 정확히 이동시키는 활동입니다. 로봇 팔의 움직임과 그리퍼 사용을 정밀하게 기록하여 선을 벗어나지 않도록 합니다.', imagePlaceholder: '[여기에 점선을 따라가는 로봇팔 끝을 클로즈업한 이미지를 넣으면 좋습니다]', features: ['정밀 경로 추적', '그리퍼 제어', '미세한 위치 기록'] }
+                    { title: '📦 1. 원기둥 옮기기', content: '로봇 팔을 손으로 움직여 원기둥을 잡고 A 지점에서 B 지점으로 옮긴 후 놓는 과정을 기록하고 재생합니다.', imagePlaceholder: '[여기에 원기둥을 옮기는 로봇 팔 이미지를 넣으면 학습 효과가 좋습니다]', features: ['<strong>위치 기록</strong> (티칭 버튼 한 번 사용)', '<strong>그리퍼 제어</strong> (티칭 버튼 두 번 사용)'] },
+                    { title: '🧱 2. 원기둥 쌓기', content: '첫 번째 원기둥을 옮긴 후, 두 번째 원기둥을 가져와 첫 번째 원기둥 위에 쌓는 복합적인 운반 및 정렬 활동입니다.', imagePlaceholder: '[여기에 원기둥 두 개를 차곡차곡 쌓는 이미지를 넣으면 좋습니다]', features: ['연속된 위치 기록', '그리퍼 제어'] },
+                    { title: '🔢 3. 순서대로 옮기기', content: '3개 이상의 작은 물체들을 특정 순서에 따라 지정된 다른 위치로 이동시키는 활동입니다.', imagePlaceholder: '[여기에 1, 2, 3번 물체를 순서대로 옮기는 이미지를 넣으면 좋습니다]', features: ['다단계 운반', '순서 지정', '그리퍼 제어'] },
+                    { title: '🎨 4. 물체 분류하기', content: '크기나 색깔이 다른 물체들을 분류하여 각기 다른 공간에 놓는 활동입니다.', imagePlaceholder: '[여기에 색깔 블록을 색깔별 상자에 분류하는 이미지를 넣으면 좋습니다]', features: ['물체 분류', '여러 위치 기록', '그리퍼 제어'] },
+                    { title: '✍️ 5. 도형 그리기', content: '그리퍼 없이 로봇 팔을 움직여 공중에서 \'ㅁ\' 또는 \'ㅅ\'과 같은 도형 모양의 궤적을 기록하고 재생합니다.', imagePlaceholder: '[여기에 허공에 사각형을 그리는 로봇팔 궤적을 넣으면 좋습니다]', features: ['위치 기록 (그리퍼 제외)', '4개 관절의 수동 제어'] },
+                    { title: '🔄 6. 제자리 반복', content: '그리퍼로 물건을 잡았다가 들어 올린 후 다시 원래 위치에 내려놓는 과정을 여러 번 반복하여 기록합니다.', imagePlaceholder: '[여기에 물건을 들었다 놨다 하는 로봇팔 이미지를 넣으면 좋습니다]', features: ['반복 동작 기록', '그리퍼 제어'] },
+                    { title: '🚧 7. 장애물 피하기', content: '테이블 위 작은 장애물을 넘어서 물체를 A 지점에서 B 지점으로 옮기는 활동입니다.', imagePlaceholder: '[여기에 장애물을 위로 피해가는 로봇팔 이미지를 넣으면 좋습니다]', features: ['정밀한 관절 제어', '장애물 회피 움직임 기록'] },
+                    { title: '👋 8. 인사하기', content: '로봇 팔을 위아래로 흔들거나 그리퍼를 열고 닫으며 인사하는 듯한 재미있는 동작을 기록하고 재생합니다.', imagePlaceholder: '[여기에 손을 흔드는 것처럼 움직이는 로봇팔 이미지를 넣으면 좋습니다]', features: ['창의적 움직임 기록', '그리퍼 및 관절 활용'] },
+                    { title: '📥 9. 용기에 담기', content: '작은 구슬이나 블록을 하나씩 집어 컵이나 상자 같이 입구가 좁은 용기 안에 정확히 떨어뜨리는 활동입니다.', imagePlaceholder: '[여기에 컵 안에 구슬을 넣는 로봇팔 이미지를 넣으면 좋습니다]', features: ['정교한 집기 및 놓기 (그리퍼 사용)', '정확한 위치 기록'] },
+                    { title: '↩️ 10. 초기 위치 복귀', content: '물체를 옮긴 후, 로봇 팔을 다시 처음 시작했던 초기 위치로 되돌리는 과정을 기록합니다.', imagePlaceholder: '[여기에 출발점으로 돌아오는 로봇팔 이미지를 넣으면 좋습니다]', features: ['초기 위치 복귀 경로 기록', '연속 동작 기록'] },
+                    { title: '⬆️ 11. 높이 조절', content: '물체를 집어 특정 높이까지 정확하게 들어 올린 후 잠시 멈추는 동작을 기록합니다.', imagePlaceholder: '[여기에 자 옆에서 특정 높이까지 물체를 드는 로봇팔 이미지를 넣으면 좋습니다]', features: ['그리퍼 제어', '정밀한 수직 위치 기록'] },
+                    { title: '🎯 12. 목표 지점 터치', content: '테이블 위 여러 목표 지점을 로봇 팔 끝으로 정확히 터치하는 동작을 순서대로 기록합니다.', imagePlaceholder: '[여기에 과녁의 중심을 가리키는 로봇팔 이미지를 넣으면 좋습니다]', features: ['정밀한 궤적 및 위치 기록', '다양한 관절 조합'] },
+                    { title: '〰️ 13. 지그재그 이동', content: '물체를 집어 지그재그 형태의 경로를 따라 이동시킨 후 내려놓는 활동을 기록합니다.', imagePlaceholder: '[여기에 지그재그 선을 따라 움직이는 로봇팔 이미지를 넣으면 좋습니다]', features: ['복잡한 경로 기록', '그리퍼 제어'] },
+                    { title: '📄 14. 얇은 물체 집기', content: '종이 한 장 같은 얇은 물체를 손상 없이 집어 다른 곳으로 옮기는 과정을 기록합니다.', imagePlaceholder: '[여기에 종이 한 장을 조심스럽게 집는 로봇팔 이미지를 넣으면 좋습니다]', features: ['그리퍼의 정교한 사용', '물체 운반'] },
+                    { title: '👏 15. 손뼉 치기', content: '로봇 팔을 움직여 박수를 치는 듯한 동작을 만들어 기록하고 재생합니다.', imagePlaceholder: '[여기에 손뼉을 치듯 빠르게 움직이는 로봇팔 이미지를 넣으면 좋습니다]', features: ['창의적 동작 기록', '팔 관절의 연동'] },
+                    { title: '📈 16. 바닥에서 테이블 위로', content: '바닥에 놓인 물체를 잡아 테이블 위 특정 위치에 놓는 과정을 기록합니다.', imagePlaceholder: '[여기에 바닥의 물건을 책상 위로 올리는 로봇팔 이미지를 넣으면 좋습니다]', features: ['넓은 범위의 관절 움직임 기록', '그리퍼 제어'] },
+                    { title: '🧩 17. 간단 조립', content: '두 개의 블록 중 하나를 잡아 다른 블록 위에 정확하게 끼워 넣는 듯한 조립 동작을 시뮬레이션합니다.', imagePlaceholder: '[여기에 레고 블록 두 개를 조립하는 로봇팔 이미지를 넣으면 좋습니다]', features: ['정교한 위치 및 방향 제어', '그리퍼 사용'] },
+                    { title: '🔄 18. 들고 회전하기', content: '물체를 잡고 들어 올린 후, 로봇 팔 전체를 회전시켜 방향을 바꾼 다음 내려놓는 과정을 기록합니다.', imagePlaceholder: '[여기에 물체를 들고 90도 회전하는 로봇팔 이미지를 넣으면 좋습니다]', features: ['다중 관절 회전', '복합적인 운반'] },
+                    { title: '🧘 19. 대기 포즈', content: '물체를 옮긴 후, 로봇 팔이 특정 대기 포즈(예: 팔을 가지런히 모으는 포즈)를 취하는 과정을 기록합니다.', imagePlaceholder: '[여기에 차렷 자세처럼 대기하는 로봇팔 이미지를 넣으면 좋습니다]', features: ['연속 동작 기록', '특정 포즈 기록'] },
+                    { title: '📏 20. 점선 따라가기', content: '테이블에 그려진 점선 경로를 따라 물체를 정확히 이동시키는 활동입니다.', imagePlaceholder: '[여기에 점선을 따라가는 로봇팔 끝을 클로즈업한 이미지를 넣으면 좋습니다]', features: ['정밀 경로 추적', '미세한 위치 기록'] }
                 ]
             }
         }
